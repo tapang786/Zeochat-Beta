@@ -1,6 +1,15 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Navbar from '@/components/Navbar'
+import Hero from '@/components/Hero'
+import SearchNow from '@/components/SearchNow'
+import UserTypeSelect from '@/components/UserTypeSelect'
+import Services from '@/components/Services'
+import ExploreWorld from '@/components/ExploreWorld'
+import CounterSection from '@/components/CounterSection'
+import Testimonials from '@/components/Testimonials'
+import ExperienceGrid from '@/components/ExperienceGrid'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -9,8 +18,18 @@ export default function Home() {
     const loadContent = async () => {
       try {
         const response = await fetch('/index-content.html')
-        const html = await response.text()
-        
+        let html = await response.text()
+
+        // Strip hero, search, and user type select sections to avoid duplication
+        html = html
+          .replace(/<aside id="zeochat-hero">[\s\S]*?<\/aside>/i, '')
+          .replace(/<div id="search-now"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="user-type-select">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="services">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="explore-world">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-counter">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-testimony">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-campuses">[\s\S]*?<\/div>\s*<\/div>/i, '')
         if (containerRef.current) {
           const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
           const bodyContent = bodyMatch ? bodyMatch[1] : html
@@ -20,12 +39,21 @@ export default function Home() {
         console.error('Error loading content:', error)
       }
     }
-    
+
     loadContent()
   }, [])
 
   return (
     <div id="page" style={{ minHeight: '100vh' }}>
+      <Navbar />
+      <Hero />
+      <SearchNow />
+      <UserTypeSelect />
+      <Services />
+      <ExploreWorld />
+      <CounterSection />
+      <Testimonials />
+      <ExperienceGrid />
       <div ref={containerRef}>
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <h2>Loading Zeochat...</h2>

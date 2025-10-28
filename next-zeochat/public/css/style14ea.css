@@ -109,6 +109,8 @@ h1, h2, h3, h4, h5, h6, figure, ul {
   .zeochat-nav.scrolled {
     background: url(/images/dark.jpg);
     background-size: cover;
+    width: 100%;
+    height: fit-content;
     background-position: center;
     background-repeat: no-repeat; }
   @media screen and (max-width: 768px) {
@@ -146,12 +148,14 @@ h1, h2, h3, h4, h5, h6, figure, ul {
         color: rgba(255, 255, 255, 0.8); }
   .zeochat-nav .top-menu {
     padding: 40px 0;
+    min-height: 80px;
     transition: all 0.3s ease; }
   .zeochat-nav.scrolled .top-menu {
-    padding: 12px 0; }
+    padding: 18px 0;
+    min-height: 65px; }
     @media screen and (max-width: 768px) {
-    .zeochat-nav .top-menu{padding:12px 1em;background:transparent;}
-    .zeochat-nav .top-menu.fixed-menu{padding:12px 1em;padding-left:15px !important;background:#302a40;}
+    .zeochat-nav .top-menu{padding:16px 1em;background:transparent;}
+    .zeochat-nav .top-menu.fixed-menu{padding:16px 1em;padding-left:15px !important;background:#302a40;}
     }
     @media screen and (max-width: 992px) {
     .zeochat-nav .top-menu .col-md-3 {float:left;}
