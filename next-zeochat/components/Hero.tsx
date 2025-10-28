@@ -272,7 +272,7 @@ export default function Hero() {
                   <h2>Bring Your Wonders to Life</h2>
                   <h3>Every Zeochat connects you with real people for real experiences</h3>
                   <p>
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#rate-select">
+                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#chat-topics">
                       <span className="icon"><i className="icon-library" ></i></span>
                       Start Your Journey
                     </a>
@@ -317,7 +317,7 @@ export default function Hero() {
                   <h2 className="ambassador-view">Explore Anywhere. Connect Instantly</h2>
                   <h3 className="ambassador-view">Save travel time + money by exploring places instantly with authentic local Guides</h3>
                   <p className="ambassador-view">
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#chat-topics">
+                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#live-chat-learn">
                       <span className="icon"><i className="icon-bubble"></i></span>
                       Start Connecting
                     </a>
