@@ -1,15 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false)
+  const offcanvasRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      // Get hero section height dynamically
       const heroSection = document.getElementById('zeochat-hero')
-      const heroHeight = heroSection ? heroSection.offsetHeight : 700 // fallback to min-height
+      const heroHeight = heroSection ? heroSection.offsetHeight : 700
       
       if (window.scrollY > heroHeight) {
         setIsScrolled(true)
@@ -22,21 +23,80 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  return (
-    <nav className={`zeochat-nav guest ${isScrolled ? 'scrolled' : ''}`} role="navigation">
-      <div className="top-menu">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-3">
-              <div id="zeochat-logo">
-                <a href="index.html">
-                  <span>Zeo</span>chat <span className="icon-feed"></span>
-                </a>
-                <a className="logo-beta" href="index.html">Beta</a>
-              </div>
-            </div>
+  // Mobile menu outside click handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node
+      
+      if (isOffcanvasOpen && offcanvasRef.current && !offcanvasRef.current.contains(target)) {
+        const toggleButton = document.querySelector('.js-zeochat-nav-toggle') as HTMLElement
+        if (target !== toggleButton && !toggleButton?.contains(target)) {
+          setIsOffcanvasOpen(false)
+          document.body.classList.remove('overflow', 'offcanvas')
+        }
+      }
+    }
 
-            <div className="col-md-9 text-right menu-1"></div>
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOffcanvasOpen])
+
+  // Handle mobile menu toggle
+  const handleMenuToggle = (e: React.MouseEvent) => {
+    e.preventDefault()
+    
+    if (document.body.classList.contains('overflow') && document.body.classList.contains('offcanvas')) {
+      document.body.classList.remove('overflow', 'offcanvas')
+      setIsOffcanvasOpen(false)
+    } else {
+      document.body.classList.add('overflow', 'offcanvas')
+      setIsOffcanvasOpen(true)
+    }
+  }
+
+  // Go to top function
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+  return (
+    <>
+      {/* Mobile Hamburger Menu Toggle */}
+      <a 
+        href="javascript:void(0)" 
+        onClick={handleMenuToggle}
+        className={`js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white ${isOffcanvasOpen ? 'active' : ''}`}
+      >
+        <i></i>
+      </a>
+
+      {/* Offcanvas Menu */}
+      <div id="zeochat-offcanvas" ref={offcanvasRef}>
+        <div id="zeochat-logo-offcanvas">
+          <a href="index.html">
+            <span>Zeo</span>chat <span className="icon-feed"></span>
+          </a>
+        </div>
+        {/* Menu sections will be cloned here by legacy JS if present */}
+      </div>
+
+      <nav className={`zeochat-nav guest ${isScrolled ? 'scrolled' : ''}`} role="navigation">
+        <div className="top-menu">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-3">
+                <div id="zeochat-logo">
+                  <a href="index.html">
+                    <span>Zeo</span>chat <span className="icon-feed"></span>
+                  </a>
+                  <a className="logo-beta" href="index.html">Beta</a>
+                </div>
+              </div>
+
+              <div className="col-md-9 text-right menu-1"></div>
 
             <div className="menu-2">
               <ul className="item-2 ambassador-view info-not-added" style={{ marginBottom: '15px' }}>
@@ -189,6 +249,7 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+    </>
   )
 }
 
