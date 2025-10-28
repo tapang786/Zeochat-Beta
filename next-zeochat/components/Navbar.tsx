@@ -1,16 +1,15 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false)
-  const offcanvasRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
+      // Get hero section height dynamically
       const heroSection = document.getElementById('zeochat-hero')
-      const heroHeight = heroSection ? heroSection.offsetHeight : 700
+      const heroHeight = heroSection ? heroSection.offsetHeight : 700 // fallback to min-height
       
       if (window.scrollY > heroHeight) {
         setIsScrolled(true)
@@ -23,112 +22,24 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Mobile menu outside click handler
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node
-      
-      if (isOffcanvasOpen && offcanvasRef.current && !offcanvasRef.current.contains(target)) {
-        const toggleButton = document.querySelector('.js-zeochat-nav-toggle') as HTMLElement
-        if (target !== toggleButton && !toggleButton?.contains(target)) {
-          setIsOffcanvasOpen(false)
-          document.body.classList.remove('overflow', 'offcanvas')
-        }
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [isOffcanvasOpen])
-
-  // Handle mobile menu toggle
-  const handleMenuToggle = (e: React.MouseEvent) => {
-    e.preventDefault()
-    
-    if (document.body.classList.contains('overflow') && document.body.classList.contains('offcanvas')) {
-      document.body.classList.remove('overflow', 'offcanvas')
-      setIsOffcanvasOpen(false)
-    } else {
-      document.body.classList.add('overflow', 'offcanvas')
-      setIsOffcanvasOpen(true)
-    }
-  }
-
-  // Go to top function
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
-
   return (
-    <>
-      {/* Mobile Hamburger Menu Toggle */}
-      <a 
-        href="javascript:void(0)" 
-        onClick={handleMenuToggle}
-        className={`js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white ${isOffcanvasOpen ? 'active' : ''}`}
-      >
-        <i></i>
-      </a>
-
-      {/* Offcanvas Menu */}
-      <div id="zeochat-offcanvas" ref={offcanvasRef}>
-        <div id="zeochat-logo-offcanvas">
-          <a href="index.html">
-            <span>Zeo</span>chat <span className="icon-feed"></span>
-          </a>
-        </div>
-        {/* Menu sections will be cloned here by legacy JS if present */}
-      </div>
-
-      <nav className={`zeochat-nav guest ${isScrolled ? 'scrolled' : ''}`} role="navigation">
-        <div className="top-menu">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-3">
-                <div id="zeochat-logo">
-                  <a href="index.html">
-                    <span>Zeo</span>chat <span className="icon-feed"></span>
-                  </a>
-                  <a className="logo-beta" href="index.html">Beta</a>
-                </div>
+    <nav className={`zeochat-nav guest ${isScrolled ? 'scrolled' : ''}`} role="navigation">
+      <div className="top-menu">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3">
+              <div id="zeochat-logo">
+                <a href="index.html">
+                  <span>Zeo</span>chat <span className="icon-feed"></span>
+                </a>
+                <a className="logo-beta" href="index.html">Beta</a>
               </div>
+            </div>
 
-              <div className="col-md-9 text-right menu-1"></div>
+            <div className="col-md-9 text-right menu-1"></div>
 
             <div className="menu-2">
-              <ul className="item-2 ambassador-view info-not-added" style={{ marginBottom: '15px' }}>
-                <li className="ambassador-view">
-                  <h2 style={{ textAlign: 'center', fontSize: '24px', marginTop: '15px', paddingBottom: '6px' }}>
-                    Guide
-                  </h2>
-                </li>
-                <li className="ambassador-view">
-                  <button
-                    className="js-zeochat-nav-toggle"
-                    data-toggle="modal"
-                    data-target="#profile-select"
-                    style={{
-                      textAlign: 'center',
-                      display: 'block',
-                      background: '#fff',
-                      width: '50%',
-                      margin: '0 auto',
-                      color: '#000',
-                      fontSize: '21px',
-                      fontWeight: '600',
-                      boxShadow: '1px 1px 3px #777',
-                      padding: '18px',
-                      borderRadius: '45px',
-                      border: 'none'
-                    }}
-                  >
-                    Apply
-                  </button>
-                </li>
-              </ul>
+              
 
               <ul className="item-2 explorer-view info-not-added" style={{ marginBottom: '18px' }}>
                 <li className="explorer-view">
@@ -222,12 +133,12 @@ export default function Navbar() {
                   <div className="social-login">
                     <div className="btn btn-white social-btn">
                       <a href="#">
-                        <img src="../img.icons8.com/color/48/google-logo.png" alt="Google" /> Google
+                        <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google" /> Google
                       </a>
                     </div>
                     <div className="btn btn-white social-btn">
                       <a href="#">
-                        <img src="../img.icons8.com/color/48/facebook-new.png" alt="Facebook" /> Facebook
+                        <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook" /> Facebook
                       </a>
                     </div>
                   </div>
@@ -249,7 +160,6 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-    </>
   )
 }
 

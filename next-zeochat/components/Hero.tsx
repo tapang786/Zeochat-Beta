@@ -1,10 +1,64 @@
 'use client'
 
+import { useEffect } from 'react'
+
 export default function Hero() {
+  useEffect(() => {
+    // Initialize flexslider after component mounts
+    if (typeof window !== 'undefined' && (window as any).$) {
+      const $ = (window as any).$
+      
+      // Initialize flexslider
+      $('#zeochat-hero .flexslider').flexslider({
+        animation: 'fade',
+        slideshowSpeed: 7500,
+        directionNav: true,
+        start: function () {
+          setTimeout(function () {
+            $('.slider-text').removeClass('animated fadeInUp')
+            $('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp')
+          }, 500)
+        },
+        before: function () {
+          setTimeout(function () {
+            $('.slider-text').removeClass('animated fadeInUp')
+            $('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp')
+          }, 500)
+        }
+      })
+
+      // Handle modal open on "Start Exploring" button click
+      const handleCampusSelectClick = function(e: JQuery.Event) {
+        e.preventDefault()
+        const modal = $('#campus-select')
+        if (modal.length) {
+          modal.modal('show')
+        }
+      }
+      
+      const handleChatTopicsClick = function(e: JQuery.Event) {
+        e.preventDefault()
+        const modal = $('#chat-topics')
+        if (modal.length) {
+          modal.modal('show')
+        }
+      }
+
+      $(document).on('click', '[data-target="#campus-select"]', handleCampusSelectClick)
+      $(document).on('click', '[data-target="#chat-topics"]', handleChatTopicsClick)
+
+      return () => {
+        $(document).off('click', '[data-target="#campus-select"]', handleCampusSelectClick)
+        $(document).off('click', '[data-target="#chat-topics"]', handleChatTopicsClick)
+      }
+    }
+  }, [])
+
   return (
     <aside id="zeochat-hero">
       <div className="flexslider">
         <ul className="slides">
+          {/* First slide */}
           <li>
             <div
               className="fl-bg-video"
@@ -44,21 +98,21 @@ export default function Hero() {
                 <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
                   <div className="slider-text-inner">
                     <div className="desc ambassador-view">
-                      <h2>Make Money with Your Phone {/* Wherever You Are*/}</h2>
+                      <h2>Go Anywhere. Do Anything. INSTANTLY {/* Wherever You Are*/}</h2>
                       <h3>
-                        Stream Local Experiences <strong>LIVE</strong> and Get Paid
+                      Zeochat makes the world a much smaller place
                       </h3>
                       <p className="amb-qualify">
                         <a
                           href="javascript:void(0);"
                           className="btn btn-primary btn-lg popup-vimeo"
                           data-toggle="modal"
-                          data-target="#profile-select"
+                          data-target="#campus-select"
                         >
                           <span className="icon">
-                            <i className="icon-shield2"></i>
+                            <i className="icon-compass2"></i>
                           </span>
-                          Go LIVE
+                          Start Exploring
                         </a>
                       </p>
                       <p className="amb-register" style={{ display: 'none' }}>
@@ -135,6 +189,56 @@ export default function Hero() {
               </div>
             </div>
           </li>
+          {/* Seventh slide */}
+          <li>
+            <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/fireworks.mp4" data-mp4="videos/fireworks.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style={{
+                  backgroundImage: 'url()',
+                  backgroundColor: 'transparent',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center center',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  height: '1280px'
+                }}
+              >
+                <source src="videos/fireworks.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div className="overlay"></div>
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
+                  <div className="slider-text-inner">
+                    <div className="desc ambassador-view">
+                      <h2>Explore YOUR World, LIVE {/* Wherever You Are*/}</h2>
+                      <h3>
+                      Welcome to the only network that delivers real-time global experiences tailored to YOU
+                      </h3>
+                      <p className="amb-qualify">
+                        <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#campus-select">
+                          <span className="icon">
+                            <i className="icon-global"></i>
+                          </span>
+                          Go Global
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </li>
+          {/* Second slide */}
       <li>
         <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/motorcycle.mp4" data-mp4="videos/motorcycle.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
           <video
@@ -165,12 +269,12 @@ export default function Hero() {
             <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
               <div className="slider-text-inner">
                 <div className="desc ambassador-view">
-                  <h2>Your Time is Valuable</h2>
-                  <h3>Earn at a rate that works for you</h3>
+                  <h2>Bring Your Wonders to Life</h2>
+                  <h3>Every Zeochat connects you with real people for real experiences</h3>
                   <p>
                     <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#rate-select">
-                      <span className="icon"><i className="icon-coin-dollar" style={{ fontSize: 33 }}></i></span>
-                      Set My Rate
+                      <span className="icon"><i className="icon-library" ></i></span>
+                      Start Your Journey
                     </a>
                   </p>
                 </div>
@@ -179,6 +283,7 @@ export default function Hero() {
           </div>
         </div>
       </li>
+      {/* Third slide */}
       <li className="slide-three">
         <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/surf.mp4" data-mp4="videos/surf.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
           <video
@@ -209,12 +314,12 @@ export default function Hero() {
             <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
               <div className="slider-text-inner">
                 <div className="desc">
-                  <h2 className="ambassador-view">Zeochats are Structured Around You</h2>
-                  <h3 className="ambassador-view">Share your passions, make money and guide experiences that people will love</h3>
+                  <h2 className="ambassador-view">Explore Anywhere. Connect Instantly</h2>
+                  <h3 className="ambassador-view">Save travel time + money by exploring places instantly with authentic local Guides</h3>
                   <p className="ambassador-view">
                     <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#chat-topics">
-                      <span className="icon"><i className="icon-library"></i></span>
-                      Select Your Passions
+                      <span className="icon"><i className="icon-bubble"></i></span>
+                      Start Connecting
                     </a>
                   </p>
                 </div>
@@ -223,6 +328,7 @@ export default function Hero() {
           </div>
         </div>
       </li>
+      {/* Fourth slide */}
       <li>
         <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/drone.mp4" data-mp4="videos/drone.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
           <video
@@ -267,6 +373,7 @@ export default function Hero() {
           </div>
         </div>
       </li>
+      {/* Fifth slide */}
       <li>
         <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/buggy.mp4" data-mp4="videos/buggy.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
           <video
@@ -297,8 +404,8 @@ export default function Hero() {
             <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
               <div className="slider-text-inner">
                 <div className="desc ambassador-view">
-                  <h2>This is Your New Social Network</h2>
-                  <h3>Hop on a Zeochat to meet, greet, earn and do more</h3>
+                  <h2>Go Beyond Your Social Network</h2>
+                  <h3>Discover a whole new world of places, people and experiences</h3>
                   <p>
                     <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#modal-date-select">
                       <span className="icon"><i className="icon-calendar2"></i></span>
@@ -311,6 +418,7 @@ export default function Hero() {
           </div>
         </div>
       </li>
+      {/* Sixth slide */}
       <li>
         <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/sealions.mp4" data-mp4="videos/sealions.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
           <video
@@ -342,7 +450,7 @@ export default function Hero() {
               <div className="slider-text-inner">
                 <div className="desc">
                   <h2>Start a Zeochat Today</h2>
-                  <h3 className="ambassador-view">Connect with real people to earn, share and have fun</h3>
+                  <h3 className="ambassador-view">Connect directly with real people to do real things... anywhere</h3>
                   <p className="ambassador-view">
                     <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#profile-select">
                       <span className="icon"><i className="icon-feed intro-feed-icon"></i></span>
@@ -356,55 +464,8 @@ export default function Hero() {
         </div>
       </li>
 
-          {/* Additional slides from legacy kept for parity */}
-          <li>
-            <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/fireworks.mp4" data-mp4="videos/fireworks.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style={{
-                  backgroundImage: 'url()',
-                  backgroundColor: 'transparent',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center center',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  position: 'absolute',
-                  height: '1280px'
-                }}
-              >
-                <source src="videos/fireworks.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="overlay"></div>
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-                  <div className="slider-text-inner">
-                    <div className="desc ambassador-view">
-                      <h2>Monetize YOUR World {/* Wherever You Are*/}</h2>
-                      <h3>
-                        Stream Local Experiences <strong>LIVE</strong> and Get Paid
-                      </h3>
-                      <p className="amb-qualify">
-                        <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#profile-select">
-                          <span className="icon">
-                            <i className="icon-shield2"></i>
-                          </span>
-                          Qualify as a Guide
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
+         
+          
         </ul>
       </div>
     </aside>

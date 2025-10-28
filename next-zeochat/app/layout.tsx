@@ -49,6 +49,21 @@ export default function RootLayout({
               window.sitekey = '6LdLJrMrAAAAAIy7oqWsZ0Ww_LpNd_iKDAOAsTNe';
               window.apiurl = 'https://zeochat.com/api/v1/';
               window.prefix = 'yA0JuFD6n6zkC1';
+              
+              // Polyfill for legacy cookie functions
+              window.getCookie = function(name) {
+                const matches = document.cookie.match(
+                  new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\\[\\]\\\\\\/+^])/g, '\\\\$1') + '=([^;]*)')
+                );
+                return matches ? decodeURIComponent(matches[1]) : '';
+              };
+              
+              window.setCookie = function(name, value, days) {
+                var d = new Date();
+                d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+                var expires = 'expires=' + d.toUTCString();
+                document.cookie = name + '=' + encodeURIComponent(value) + '; ' + expires + '; path=/';
+              };
             `,
           }}
         />
