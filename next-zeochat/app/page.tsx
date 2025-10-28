@@ -10,6 +10,10 @@ import ExploreWorld from '@/components/ExploreWorld'
 import CounterSection from '@/components/CounterSection'
 import Testimonials from '@/components/Testimonials'
 import ExperienceGrid from '@/components/ExperienceGrid'
+import Marketplace from '@/components/Marketplace'
+import Guides from '@/components/Guides'
+import Subscribe from '@/components/Subscribe'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -30,6 +34,11 @@ export default function Home() {
           .replace(/<div id="zeochat-counter">[\s\S]*?<\/div>\s*<\/div>/i, '')
           .replace(/<div id="zeochat-testimony">[\s\S]*?<\/div>\s*<\/div>/i, '')
           .replace(/<div id="zeochat-campuses">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-event">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-trainers">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-guides">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-subscribe">[\s\S]*?<\/div>\s*<\/div>/i, '')
+          .replace(/<div id="zeochat-footer">[\s\S]*?<\/div>\s*<\/div>/i, '')
         if (containerRef.current) {
           const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
           const bodyContent = bodyMatch ? bodyMatch[1] : html
@@ -54,6 +63,10 @@ export default function Home() {
       <CounterSection />
       <Testimonials />
       <ExperienceGrid />
+      <Marketplace />
+      <Guides />
+      <Subscribe />
+      <Footer />
       <div ref={containerRef}>
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <h2>Loading Zeochat...</h2>
