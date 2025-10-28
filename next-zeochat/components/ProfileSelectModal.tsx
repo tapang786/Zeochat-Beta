@@ -22,7 +22,7 @@ export default function ProfileSelectModal() {
   }, [])
 
   return (
-    <div id="profile-select" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true">
+    <div id="profile-select" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true" style={{ display: 'none' }}>
       <div className="modal-dialog modal-md">
         <div className="modal-content">
           <div className="modal-header">

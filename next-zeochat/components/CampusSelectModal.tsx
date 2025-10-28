@@ -2,7 +2,7 @@
 
 export default function CampusSelectModal() {
   return (
-    <div id="campus-select" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true">
+    <div id="campus-select" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true" style={{ display: 'none' }}>
       <div className="modal-dialog modal-lg" style={{ width: '93%' }}>
         <div className="modal-content">
           <div className="modal-header animate-box">

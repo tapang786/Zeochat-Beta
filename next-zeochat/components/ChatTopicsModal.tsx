@@ -2,7 +2,7 @@
 
 export default function ChatTopicsModal() {
   return (
-    <div id="chat-topics" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true">
+    <div id="chat-topics" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true" style={{ display: 'none' }}>
       <div className="modal-dialog modal-md" style={{ width: '51%' }}>
         <div className="modal-content">
           <div className="modal-header animate-box">

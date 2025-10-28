@@ -2,7 +2,7 @@
 
 export default function LiveChatLearnModal() {
   return (
-    <div id="live-chat-learn" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true">
+    <div id="live-chat-learn" className="modal fade" tabIndex={-1} role="dialog" aria-hidden="true" style={{ display: 'none' }}>
       <div className="modal-dialog modal-md" style={{ width: '51%' }}>
         <div className="modal-content">
           <div className="modal-header animate-box">
