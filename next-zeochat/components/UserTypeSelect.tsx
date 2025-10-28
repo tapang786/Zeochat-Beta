@@ -1,6 +1,12 @@
 'use client'
 
+import { useState, useRef } from 'react'
+
 export default function UserTypeSelect() {
+  const [selectedType, setSelectedType] = useState<string | null>(null)
+  const explorerRadioRef = useRef<HTMLInputElement>(null)
+  const guideRadioRef = useRef<HTMLInputElement>(null)
+
   return (
     <div id="user-type-select">
       <div className="container">
@@ -33,27 +39,27 @@ export default function UserTypeSelect() {
 
         <div className="row">
           <div className="col-md-6 zeochat-heading animate-box">
-            <div className="engagement-box explorer-box" style={{ background: 'url(images/explorers/compass.jpg)', backgroundSize: 'cover', float: 'right', marginRight: '12px' }}>
+            <div className="engagement-box explorer-box" style={{ background: 'url(images/explorers/compass.jpg)', backgroundSize: 'cover', float: 'right', marginRight: '12px', cursor: 'pointer' }} onClick={() => { setSelectedType('explorer'); explorerRadioRef.current?.click() }}>
               <div className="e-box-content">
                 <h3 className="center-heading text-center" style={{ color: '#fff' }}>
                   Explorer
                   <span style={{ fontSize: '18px' }}> / Learner</span>
-                  <input type="radio" name="registertype" className="checkbox explorer" value="explorer" />
+                  <input type="radio" name="registertype" ref={explorerRadioRef} className="checkbox explorer" value="explorer" onChange={() => setSelectedType('explorer')} />
                   <span className="checkmark"></span>
                 </h3>
                 <span className="icon-compass2" style={{ textAlign: 'center', display: 'none', fontSize: '84px', marginTop: '45px' }}></span>
               </div>
-              <button className="select-explorer-button">
+              <button className="select-explorer-button" style={{ display: selectedType === 'explorer' ? 'none' : 'block' }} onClick={(e) => e.stopPropagation()}>
                 <span className="icon-compass2"></span>
               </button>
 
-              <button onClick={() => {}} className="launch-explorer-button" style={{ display: 'none' }} data-toggle="modal" data-target="#profile-select">
+              <button onClick={(e) => { e.stopPropagation(); }} className="launch-explorer-button" style={{ display: selectedType === 'explorer' ? 'block' : 'none' }} data-toggle="modal" data-target="#profile-select">
                 <span className="icon-compass2"></span> Launch
               </button>
-              <button onClick={() => {}} className="explore-explorer-button" style={{ display: 'none' }}>
+              <button onClick={(e) => { e.stopPropagation(); }} className="explore-explorer-button" style={{ display: 'none' }}>
                 <span className="icon-shield2"></span> Explore
               </button>
-              <button onClick={() => {}} className="zeochat-explorer-button" style={{ display: 'none' }}>
+              <button onClick={(e) => { e.stopPropagation(); }} className="zeochat-explorer-button" style={{ display: 'none' }}>
                 <span className="icon-shield2"></span> Zeochat
               </button>
             </div>
@@ -63,27 +69,27 @@ export default function UserTypeSelect() {
           </div>
 
           <div className="col-md-6 zeochat-heading animate-box">
-            <div className="engagement-box ambassador-box" style={{ background: 'url(images/brand/branding-wood.jpg)', backgroundSize: 'cover', backgroundPositionY: '-42px', float: 'left', marginLeft: '12px' }}>
+            <div className="engagement-box ambassador-box" style={{ background: 'url(images/brand/branding-wood.jpg)', backgroundSize: 'cover', backgroundPositionY: '-42px', float: 'left', marginLeft: '12px', cursor: 'pointer' }} onClick={() => { setSelectedType('guide'); guideRadioRef.current?.click() }}>
               <div className="e-box-content">
                 <h3 className="center-heading text-center" style={{ color: '#fff' }}>
                   Guide
                   <span style={{ fontSize: '18px' }}> / Earner</span>
-                  <input type="radio" name="registertype" className="checkbox ambassador" value="Guide" />
+                  <input type="radio" name="registertype" ref={guideRadioRef} className="checkbox ambassador" value="Guide" onChange={() => setSelectedType('guide')} />
                   <span className="checkmark"></span>
                 </h3>
                 <span className="icon-shield2" style={{ textAlign: 'center', display: 'none', fontSize: '84px', marginTop: '45px' }}></span>
               </div>
-              <button className="select-ambassador-button">
+              <button className="select-ambassador-button" style={{ display: selectedType === 'guide' ? 'none' : 'block' }} onClick={(e) => e.stopPropagation()}>
                 <span className="icon-shield2"></span>
               </button>
 
-              <button onClick={() => {}} className="qualify-ambassador-button" style={{ display: 'none' }} data-toggle="modal" data-target="#profile-select">
+              <button onClick={(e) => { e.stopPropagation(); }} className="qualify-ambassador-button" style={{ display: selectedType === 'guide' ? 'block' : 'none' }} data-toggle="modal" data-target="#profile-select">
                 <span className="icon-shield2"></span> Qualify
               </button>
-              <button onClick={() => {}} className="apply-ambassador-button" style={{ display: 'none' }}>
+              <button onClick={(e) => { e.stopPropagation(); }} className="apply-ambassador-button" style={{ display: 'none' }}>
                 <span className="icon-shield2"></span> Apply
               </button>
-              <button onClick={() => {}} className="start-earning-ambassador-button" style={{ display: 'none' }}>
+              <button onClick={(e) => { e.stopPropagation(); }} className="start-earning-ambassador-button" style={{ display: 'none' }}>
                 <span className="icon-shield2"></span> Start Earning
               </button>
             </div>
