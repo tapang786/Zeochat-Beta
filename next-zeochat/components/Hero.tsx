@@ -44,12 +44,21 @@ export default function Hero() {
         }
       }
 
+      const handleIntroSelectClick = function(e: JQuery.Event) {
+        e.preventDefault()
+        const modal = $('#intro-select')
+        if (modal.length) {
+          modal.modal('show')
+        }
+      }
+
       $(document).on('click', '[data-target="#campus-select"]', handleCampusSelectClick)
       $(document).on('click', '[data-target="#chat-topics"]', handleChatTopicsClick)
-
+      $(document).on('click', '[data-target="#intro-select"]', handleIntroSelectClick)
       return () => {
         $(document).off('click', '[data-target="#campus-select"]', handleCampusSelectClick)
         $(document).off('click', '[data-target="#chat-topics"]', handleChatTopicsClick)
+        $(document).off('click', '[data-target="#intro-select"]', handleIntroSelectClick)
       }
     }
   }, [])

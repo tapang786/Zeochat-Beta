@@ -14,6 +14,7 @@ import Marketplace from '@/components/Marketplace'
 import Guides from '@/components/Guides'
 import Subscribe from '@/components/Subscribe'
 import Footer from '@/components/Footer'
+import ProfileSelectModal from '@/components/ProfileSelectModal'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -67,6 +68,7 @@ export default function Home() {
       <Guides />
       <Subscribe />
       <Footer />
+      <ProfileSelectModal />
       <div ref={containerRef}>
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <h2>Loading Zeochat...</h2>
