@@ -96,26 +96,40 @@ h1, h2, h3, h4, h5, h6, figure, ul {
   background-repeat: no-repeat;
   position: relative; }
 
+/* CSS Custom Property for scroll threshold (100vh) */
+:root {
+  --scroll-threshold: 100vh;
+}
+
 .zeochat-nav {
-  margin: 0;
+  margin: 0 auto;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 9;
-  margin: 0 auto;
+  width: 100%;
   background: transparent;
-  transition: background 0.3s ease; }
-  .zeochat-nav.scrolled {
-    background: url(/images/dark.jpg);
-    background-size: cover;
-    width: 100%;
-    height: 75px;
-    background-position: start;
-    background-repeat: no-repeat; 
-    border-bottom: 1px solid #999;
-    opacity: 1;
-  }
+  transition: background 0.3s ease;
+}
+/* Only apply scrolled styles when scroll reaches 100vh */
+.zeochat-nav.scrolled {
+  background: transparent;
+  transition: background 0.3s ease;
+}
+/* Use CSS custom property to check if scroll >= 100vh via JS set variable */
+.zeochat-nav.scrolled[data-scrolled="true"] {
+  background: url(/images/dark.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 75px;
+  background-position: start;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #999;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+}
   @media screen and (max-width: 768px) {
     .zeochat-nav {
       margin: 0; } }
@@ -366,7 +380,7 @@ h1, h2, h3, h4, h5, h6, figure, ul {
       .zeochat-nav ul li.active > a {
         color: white;
         position: relative;
-        position: relative; }
+      }
         .zeochat-nav ul li.active > a:after {
           position: absolute;
           bottom: 25px;
@@ -2344,13 +2358,24 @@ position: relative; }
       outline: none; }
 
 .zeochat-nav-toggle {
-  width: 25px;
-  height: 25px;
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  z-index: 2001;
+  width: 72px;
+  height: 45px;
+  padding: 6px 0 0 0;
+  display: block;
+  margin: 0 auto;
   cursor: pointer;
   text-decoration: none;
-  top: 1.8em !important;
-  text-align: center;}
-  .zeochat-nav-toggle.fixed-hamburger {position:fixed;top: 12px !important;}
+  text-align: center;
+  border-bottom: none !important;
+}
+.zeochat-nav-toggle.fixed-hamburger {
+  position: fixed;
+  top: 12px !important;
+}
   .zeochat-nav-toggle.active i::before, .zeochat-nav-toggle.active i::after {
     background: #444; }
   .zeochat-nav-toggle:hover, .zeochat-nav-toggle:focus, .zeochat-nav-toggle:active {
@@ -2420,20 +2445,7 @@ position: relative; }
   transform: rotateZ(-45deg);
   background: #fff; }
 
-.zeochat-nav-toggle {
-  position: absolute;
-  right: 10px;
-  top: 65px;
-  z-index: 21;
-  padding: 6px 0 0 0;
-  display: block;
-  margin: 0 auto;
-  display: block; /* add into desktop view */
-  height: 45px;
-  width: 72px;
-  z-index: 2001;
-  border-bottom: none !important; }
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #zeochat-logo-offcanvas {top: 9px;}
   .zeochat-nav-toggle {
     display: block;
@@ -2442,28 +2454,9 @@ position: relative; }
   .zeochat-nav-toggle.fixed-hamburger {
     position:fixed;} }
 .opacity-on {opacity: 0;}
-.zeochat-nav .top-menu.fixed-menu {
-padding: 6px 0;
-position: fixed;
-background: #302a40;
-background-image: url(../images/dark.jpg); 
-width: 100%;
-border-bottom: 1px solid #999;
-opacity: 1;
-    -webkit-transition: opacity 1s ease-in;
-  -moz-transition: opacity 1s ease-in;
-   -ms-transition: opacity 1s ease-in;
-    -o-transition: opacity 1s ease-in;
-     transition: opacity 1s ease-in;
-     z-index:99;
-}
-.zeochat-nav .top-menu.fixed-menu .text-right.menu-1 {
-padding-top:12px;
-}
 .zeochat-nav ul li.btn-cta a span {background: #fff !important;color:#000;box-shadow: 1px 1px 1px #000;} /*#397f2e*/
 .zeochat-nav ul li.btn-cta a {opacity: .6;}
 .zeochat-nav ul li.btn-cta a:hover {opacity:1;}
-.zeochat-nav .top-menu.fixed-menu ul li.btn-cta a {opacity:1;}
 .btn {
   margin-right: 4px;
   margin-bottom: 4px;
