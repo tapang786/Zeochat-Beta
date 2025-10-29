@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import SearchNow from '@/components/SearchNow'
@@ -15,9 +15,16 @@ import Guides from '@/components/Guides'
 import Subscribe from '@/components/Subscribe'
 import Footer from '@/components/Footer'
 import ProfileSelectModal from '@/components/ProfileSelectModal'
+import IntroProfileSelectModal from '@/components/IntroProfileSelectModal'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isIntroModalOpen, setIsIntroModalOpen] = useState(false)
+
+  const handleProfileSelect = (profile: 'guide' | 'explorer') => {
+    console.log('Selected profile:', profile)
+    // Handle profile selection logic here
+  }
 
   useEffect(() => {
     const loadContent = async () => {
@@ -45,6 +52,12 @@ export default function Home() {
           const bodyContent = bodyMatch ? bodyMatch[1] : html
           containerRef.current.innerHTML = bodyContent
         }
+        
+        // Show modal after content is loaded
+        setTimeout(() => {
+          console.log('Content loaded, opening intro modal...')
+          setIsIntroModalOpen(true)
+        }, 5000) // 2 second delay after content loads
       } catch (error) {
         console.error('Error loading content:', error)
       }
@@ -69,9 +82,29 @@ export default function Home() {
       <Subscribe />
       <Footer />
       <ProfileSelectModal />
+      <IntroProfileSelectModal 
+        isOpen={isIntroModalOpen}
+        onClose={() => setIsIntroModalOpen(false)}
+        onProfileSelect={handleProfileSelect}
+      />
       <div ref={containerRef}>
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <h2>Loading Zeochat...</h2>
+          <button 
+            onClick={() => setIsIntroModalOpen(true)}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#007bff',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              marginTop: '20px'
+            }}
+          >
+            Test Modal (Click to Open)
+          </button>
+          <p>Modal Status: {isIntroModalOpen ? 'OPEN' : 'CLOSED'}</p>
         </div>
       </div>
     </div>
