@@ -68,8 +68,8 @@ export default function SearchNow() {
                       </div>
                       <div className="chat-type">
                         <label style={{ cursor: 'pointer' }} data-toggle="modal" data-target="#live-chat-learn">
-                          Chat via
-                          <span style={{ marginLeft: 0 }}>
+                          Chat via 
+                          <span style={{ marginLeft: '3px' }}>
                             Live
                             <span style={{ borderBottom: '2px solid #F1D128' }}>
                               <span id="role" style={{ display: 'inline-block', width: 45 }}></span>

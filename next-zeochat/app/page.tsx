@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import SearchNow from '@/components/SearchNow'
@@ -17,42 +16,6 @@ import Footer from '@/components/Footer'
 import ProfileSelectModal from '@/components/ProfileSelectModal'
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const loadContent = async () => {
-      try {
-        const response = await fetch('/index-content.html')
-        let html = await response.text()
-
-        // Strip hero, search, and user type select sections to avoid duplication
-        html = html
-          .replace(/<aside id="zeochat-hero">[\s\S]*?<\/aside>/i, '')
-          .replace(/<div id="search-now"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="user-type-select">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="services">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="explore-world">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-counter">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-testimony">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-campuses">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-event">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-trainers">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-guides">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-subscribe">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-footer">[\s\S]*?<\/div>\s*<\/div>/i, '')
-        if (containerRef.current) {
-          const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
-          const bodyContent = bodyMatch ? bodyMatch[1] : html
-          containerRef.current.innerHTML = bodyContent
-        }
-      } catch (error) {
-        console.error('Error loading content:', error)
-      }
-    }
-
-    loadContent()
-  }, [])
-
   return (
     <div id="page" style={{ minHeight: '100vh' }}>
       <Navbar />
@@ -69,11 +32,6 @@ export default function Home() {
       <Subscribe />
       <Footer />
       <ProfileSelectModal />
-      <div ref={containerRef}>
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-          <h2>Loading Zeochat...</h2>
-        </div>
-      </div>
     </div>
   )
 }
