@@ -1,6 +1,51 @@
 'use client'
 
+import { useEffect } from 'react'
+
 export default function ExperienceGrid() {
+  useEffect(() => {
+    // Wait for scripts to load, then initialize datepicker
+    const initDatepicker = () => {
+      const w: any = window
+      const $ = w.jQuery || w.$
+      
+      if ($ && $.fn && $.fn.datepicker) {
+        try {
+          // Initialize datepicker on the datepicker div
+          $('.classes .datepicker').datepicker({
+            minDate: new Date(),
+            onSelect: function(dateText: string) {
+              // Find the input field and update it
+              const inputField = $(this).closest('.dropdown').find('input[type="text"]')
+              inputField.val(dateText).css('border', '2px solid #0081ff')
+              
+              // Close the dropdown
+              const open = document.querySelector('.classes .dropdown.open')
+              if (open && open.classList) open.classList.remove('open')
+            }
+          })
+          
+          // Set high z-index for datepicker
+          $('.ui-datepicker').css('z-index', 10000)
+          
+          console.log('Datepicker initialized successfully')
+        } catch (e) {
+          console.log('Datepicker init error:', e)
+        }
+      } else {
+        console.log('jQuery UI not ready yet')
+      }
+    }
+
+    // Try immediately
+    initDatepicker()
+    
+    // Also try after a delay to ensure scripts are loaded
+    const timer = setTimeout(initDatepicker, 2000)
+    
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div id="zeochat-campuses" className="zeochat-classes">
       <div className="container">
