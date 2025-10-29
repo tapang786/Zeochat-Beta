@@ -2,6 +2,82 @@
 
 import { useEffect } from 'react'
 
+type SlideData = {
+  videoSource: string
+  title: string
+  subtitle: string
+  buttonText: string
+  buttonIcon: string
+  modalTarget: string
+  paddingLeft?: string
+}
+
+const slides: SlideData[] = [
+  {
+    videoSource: 'videos/water.mp4',
+    title: 'Make Money with Your Phone',
+    subtitle: 'Stream Local Experiences LIVE and Get Paid',
+    buttonText: 'Go Live',
+    buttonIcon: 'icon-shield2',
+    modalTarget: '#campus-select',
+    paddingLeft: '130px'
+  },
+  {
+    videoSource: 'videos/fireworks.mp4',
+    title: 'Monetize YOUR World',
+    subtitle: 'Stream Local Experiences LIVE and Get Paid',
+    buttonText: 'Qualify as a Guide',
+    buttonIcon: 'icon-global',
+    modalTarget: '#campus-select',
+    paddingLeft: '130px'
+  },
+  {
+    videoSource: 'videos/motorcycle.mp4',
+    title: 'Bring Your Wonders to Life',
+    subtitle: 'Every Zeochat connects you with real people for real experiences',
+    buttonText: 'Start Your Journey',
+    buttonIcon: 'icon-library',
+    modalTarget: '#chat-topics',
+    paddingLeft: '130px'
+  },
+  {
+    videoSource: 'videos/surf.mp4',
+    title: 'Explore Anywhere. Connect Instantly',
+    subtitle: 'Save travel time + money by exploring places instantly with authentic local Guides',
+    buttonText: 'Start Connecting',
+    buttonIcon: 'icon-bubble',
+    modalTarget: '#live-chat-learn',
+    paddingLeft: '130px'
+  },
+  {
+    videoSource: 'videos/drone.mp4',
+    title: 'Request An Experience or Browse Listings',
+    subtitle: "Experiences are 100% unique at your request, or join something fun that's coming up",
+    buttonText: "Let's Go",
+    buttonIcon: 'icon-rocket',
+    modalTarget: '#profile-select',
+    paddingLeft: '130px'
+  },
+  {
+    videoSource: 'videos/buggy.mp4',
+    title: 'Go Beyond Your Social Network',
+    subtitle: 'Discover a whole new world of places, people and experiences',
+    buttonText: 'Schedule Your Zeochat',
+    buttonIcon: 'icon-calendar2',
+    modalTarget: '#modal-date-select',
+    paddingLeft: '130px'
+  },
+  {
+    videoSource: 'videos/sealions.mp4',
+    title: 'Start a Zeochat Today',
+    subtitle: 'Connect directly with real people to do real things... anywhere',
+    buttonText: 'Get Started',
+    buttonIcon: 'icon-feed intro-feed-icon',
+    modalTarget: '#profile-select',
+    paddingLeft: '130px'
+  }
+]
+
 export default function Hero() {
   useEffect(() => {
     // Initialize flexslider after component mounts
@@ -67,15 +143,15 @@ export default function Hero() {
     <aside id="zeochat-hero">
       <div className="flexslider">
         <ul className="slides">
-          {/* First slide */}
-          <li>
+          {slides.map((slide, index) => (
+            <li key={index}>
             <div
               className="fl-bg-video"
               data-video-mobile="yes"
               data-width="1280"
               data-height="720"
-              data-fallback="videos/water.mp4"
-              data-mp4="videos/intro/water.mp4"
+              data-fallback={slide.videoSource}
+              data-mp4={slide.videoSource}
               data-mp4-type="video/mp4"
               data-webm-type="video/webm"
             >
@@ -98,387 +174,39 @@ export default function Hero() {
                   height: '1280px'
                 }}
               >
-                <source src="videos/water.mp4" type="video/mp4" />
+                <source src={slide.videoSource} type="video/mp4" />
               </video>
             </div>
             <div className="overlay"></div>
             <div className="container-fluid">
               <div className="row">
-                <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
+                <div className="col-md-8 col-sm-12 col-xs-12 slider-text" style={{ paddingLeft: slide.paddingLeft || '45px', textAlign: 'left' }}>
                   <div className="slider-text-inner">
                     <div className="desc ambassador-view">
-                      <h2>Go Anywhere. Do Anything. INSTANTLY {/* Wherever You Are*/}</h2>
-                      <h3>
-                      Zeochat makes the world a much smaller place
-                      </h3>
+                      <h2>{slide.title}</h2>
+                      <h3>{slide.subtitle}</h3>
                       <p className="amb-qualify">
                         <a
                           href="javascript:void(0);"
                           className="btn btn-primary btn-lg popup-vimeo"
                           data-toggle="modal"
-                          data-target="#campus-select"
+                          data-target={slide.modalTarget}
                         >
                           <span className="icon">
-                            <i className="icon-compass2"></i>
+                            <i className={slide.buttonIcon}></i>
                           </span>
-                          Start Exploring
+                          {slide.buttonText}
                         </a>
                       </p>
-                      <p className="amb-register" style={{ display: 'none' }}>
-                        <a href="ambassadors/register.html" className="btn btn-primary btn-lg popup-vimeo">
-                          <span className="icon">
-                            <i className="icon-shield2"></i>
-                          </span>
-                          Register as a Guide
-                        </a>{' '}
-                        <span className="qualify-confirm" style={{ display: 'none' }}>
-                          <span className="icon-checkmark launch-checkmark"></span> You've Qualified
-                        </span>
-                      </p>
-                      <div
-                        className="guide-date-selection"
-                        style={{
-                          marginTop: 20,
-                          padding: 15,
-                          background: 'rgba(255,255,255,0.1)',
-                          borderRadius: 8,
-                          display: 'none'
-                        }}
-                      >
-                        <label
-                          style={{ color: '#fff', fontWeight: 'bold', marginBottom: 10, display: 'block' }}
-                        >
-                          When would you like to stream?
-                        </label>
-                        <div className="form-field dropdown" style={{ position: 'relative' }}>
-                          <i
-                            className="icon icon-calendar"
-                            style={{
-                              position: 'absolute',
-                              left: 10,
-                              top: '50%',
-                              transform: 'translateY(-50%)',
-                              color: '#fff',
-                              zIndex: 2
-                            }}
-                          ></i>
-                          <div className="dropdown datepick-select">
-                            <input
-                              id="guideStreamDate"
-                              type="text"
-                              name="guide-stream-date"
-                              defaultValue="Anytime"
-                              className="form-control dropdown-toggle"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                              readOnly
-                              style={{ paddingLeft: 35, background: 'rgba(255,255,255,0.9)', color: '#333' }}
-                            />
-                            <div className="dropdown-menu" aria-labelledby="guideStreamDate" onClick={(e) => e.stopPropagation()}>
-                              <div className="datepicker">
-                                <button
-                                  type="button"
-                                  className="add-date btn btn-sm btn-success"
-                                  onClick={() => {
-                                    const open = document.querySelector('.dropdown.open')
-                                    if (open && open.classList) open.classList.remove('open')
-                                  }}
-                                >
-                                  Add Date
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </li>
-          {/* Seventh slide */}
-          <li>
-            <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/fireworks.mp4" data-mp4="videos/fireworks.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style={{
-                  backgroundImage: 'url()',
-                  backgroundColor: 'transparent',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center center',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  position: 'absolute',
-                  height: '1280px'
-                }}
-              >
-                <source src="videos/fireworks.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="overlay"></div>
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-                  <div className="slider-text-inner">
-                    <div className="desc ambassador-view">
-                      <h2>Explore YOUR World, LIVE {/* Wherever You Are*/}</h2>
-                      <h3>
-                      Welcome to the only network that delivers real-time global experiences tailored to YOU
-                      </h3>
-                      <p className="amb-qualify">
-                        <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#campus-select">
-                          <span className="icon">
-                            <i className="icon-global"></i>
-                          </span>
-                          Go Global
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-      </li>
-          {/* Second slide */}
-      <li>
-        <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/motorcycle.mp4" data-mp4="videos/motorcycle.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={{
-              backgroundImage: 'url()',
-              backgroundColor: 'transparent',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              position: 'absolute',
-              height: '1280px'
-            }}
-          >
-            <source src="videos/motorcycle.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="overlay"></div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-              <div className="slider-text-inner">
-                <div className="desc ambassador-view">
-                  <h2>Bring Your Wonders to Life</h2>
-                  <h3>Every Zeochat connects you with real people for real experiences</h3>
-                  <p>
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#chat-topics">
-                      <span className="icon"><i className="icon-library" ></i></span>
-                      Start Your Journey
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      {/* Third slide */}
-      <li className="slide-three">
-        <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/surf.mp4" data-mp4="videos/surf.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={{
-              backgroundImage: 'url()',
-              backgroundColor: 'transparent',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              position: 'absolute',
-              height: '1280px'
-            }}
-          >
-            <source src="videos/surf.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="overlay"></div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-              <div className="slider-text-inner">
-                <div className="desc">
-                  <h2 className="ambassador-view">Explore Anywhere. Connect Instantly</h2>
-                  <h3 className="ambassador-view">Save travel time + money by exploring places instantly with authentic local Guides</h3>
-                  <p className="ambassador-view">
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#live-chat-learn">
-                      <span className="icon"><i className="icon-bubble"></i></span>
-                      Start Connecting
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      {/* Fourth slide */}
-      <li>
-        <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/drone.mp4" data-mp4="videos/drone.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={{
-              backgroundImage: 'url()',
-              backgroundColor: 'transparent',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              position: 'absolute',
-              height: '1280px'
-            }}
-          >
-            <source src="videos/drone.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="overlay"></div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-              <div className="slider-text-inner">
-                <div className="desc">
-                  <h2>Request An Experience or Browse Listings</h2>
-                  <h3>Experiences are 100% unique at your request, or join something fun that's coming up</h3>
-                  <p>
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#profile-select">
-                      <span className="icon"><i className="icon-rocket"></i></span>
-                      Let's Go
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      {/* Fifth slide */}
-      <li>
-        <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/buggy.mp4" data-mp4="videos/buggy.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={{
-              backgroundImage: 'url()',
-              backgroundColor: 'transparent',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              position: 'absolute',
-              height: '1280px'
-            }}
-          >
-            <source src="videos/buggy.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="overlay"></div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-              <div className="slider-text-inner">
-                <div className="desc ambassador-view">
-                  <h2>Go Beyond Your Social Network</h2>
-                  <h3>Discover a whole new world of places, people and experiences</h3>
-                  <p>
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#modal-date-select">
-                      <span className="icon"><i className="icon-calendar2"></i></span>
-                      Schedule Your Zeochat
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-      {/* Sixth slide */}
-      <li>
-        <div className="fl-bg-video" data-video-mobile="yes" data-width="1280" data-height="720" data-fallback="videos/sealions.mp4" data-mp4="videos/sealions.mp4" data-mp4-type="video/mp4" data-webm-type="video/webm">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={{
-              backgroundImage: 'url()',
-              backgroundColor: 'transparent',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              position: 'absolute',
-              height: '1280px'
-            }}
-          >
-            <source src="videos/sealions.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="overlay"></div>
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-8 col-sm-12 col-md-offset-3 col-xs-12 col-md-pull-1 slider-text">
-              <div className="slider-text-inner">
-                <div className="desc">
-                  <h2>Start a Zeochat Today</h2>
-                  <h3 className="ambassador-view">Connect directly with real people to do real things... anywhere</h3>
-                  <p className="ambassador-view">
-                    <a href="javascript:void(0);" className="btn btn-primary btn-lg popup-vimeo" data-toggle="modal" data-target="#profile-select">
-                      <span className="icon"><i className="icon-feed intro-feed-icon"></i></span>
-                      Get Started
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-
-         
-          
+          ))}
         </ul>
       </div>
     </aside>
   )
 }
-
-

@@ -152,16 +152,16 @@ export default function SearchNow() {
                       </div>
                       <div className="chat-type">
                         <label style={{ cursor: 'pointer' }} data-toggle="modal" data-target="#live-chat-learn">
-                          Chat via
-                          <span style={{ marginLeft: 0 }}>
-                            Live
-                            <span style={{ borderBottom: '2px solid #F1D128' }}>
+                          Chat via Live  
+                         
+                            
+                            <span style={{ borderBottom: '2px solid #F1D128', marginLeft: '8px' }}>
                               <span id="role" style={{ display: 'inline-block', width: 45 }}></span>
                             </span>
-                          </span>
+                          
                         </label>
                         {/*<a className="infolink" title="Learn More" data-toggle="modal" data-target="#live-chat-learn">?</a>*/}
-                        <a className="icon-pencil2" title="Learn More" data-toggle="modal" data-target="#live-chat-learn"></a>
+                        <a className="icon-pencil2" title="Learn More" data-toggle="modal" data-target="#live-chat-learn" style={{ marginLeft: '8px' }}></a>
                       </div>
                     </div>
                   </div>
