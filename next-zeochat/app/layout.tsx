@@ -6,6 +6,35 @@ export const metadata: Metadata = {
   title: 'Zeochat | Worldwide Live Experiences',
   description: 'Zeochat connects prospective students with verified, enrolled students to learn, earn and share valuable campus knowledge via exciting live chats.',
   keywords: 'live chat, live streaming experiences',
+  authors: [{ name: 'Zeochat' }],
+  robots: {
+    index: true,
+    follow: true,
+    noarchive: false,
+    nosnippet: false,
+    noimageindex: false,
+    nocache: false,
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
+  icons: {
+    icon: [
+      { url: '/images/favicon.svg', sizes: '16x16 32x32 48x48 64x64 128x128', type: 'image/svg+xml' }
+    ],
+  },
+  alternates: {
+    canonical: '#',
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+  },
+  other: {
+    'X-UA-Compatible': 'IE=edge',
+    'Copyright': 'Copyright (c) 2019-2025, Zeochat',
+  },
 }
 
 export default function RootLayout({
@@ -16,21 +45,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="publisher" href="https://www.zeochat.com/" />
-        <meta name="ROBOTS" content="ALL" />
-        <meta name="ROBOTS" content="NOYDIR" />
-        <meta name="ROBOTS" content="NOODP" />
-        <meta name="author" content="Zeochat" />
-        <meta name="Copyright" content="Copyright (c) 2019-2025, Zeochat" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="canonical" href="#" />
-        <link rel="icon" sizes="16x16 32x32 48x48 64x64 128x128" type="image/svg+xml" href="/images/favicon.svg" />
         <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900|Muli:300,400,500,700,900" rel="stylesheet" />
-        
-        {/* CSS Files */}
         <link rel="stylesheet" href="/css/animate.css" />
         <link rel="stylesheet" href="/css/icomoon.css" />
         <link rel="stylesheet" href="/css/bootstrap.css" />
@@ -41,16 +57,17 @@ export default function RootLayout({
         <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css" />
         <link rel="stylesheet" href="/css/style14ea.css?2192" />
         <link href="/assets/external/widget.css" rel="stylesheet" />
-        
-        {/* Global Config */}
-        <script
+      </head>
+      <body id="homepage">
+        <Script
+          id="global-config"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.sitekey = '6LdLJrMrAAAAAIy7oqWsZ0Ww_LpNd_iKDAOAsTNe';
               window.apiurl = 'https://zeochat.com/api/v1/';
               window.prefix = 'yA0JuFD6n6zkC1';
               
-              // Polyfill for legacy cookie functions
               window.getCookie = function(name) {
                 const matches = document.cookie.match(
                   new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\\[\\]\\\\\\/+^])/g, '\\\\$1') + '=([^;]*)')
@@ -67,8 +84,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body id="homepage">
         <noscript>
           <style>
             {`

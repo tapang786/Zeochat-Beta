@@ -16,11 +16,11 @@ import Subscribe from '@/components/Subscribe'
 import Footer from '@/components/Footer'
 import ProfileSelectModal from '@/components/ProfileSelectModal'
 import IntroProfileSelectModal from '@/components/IntroProfileSelectModal'
+import CampusSelectModal from '@/components/CampusSelectModal'
+import LiveChatLearnModal from '@/components/LiveChatLearnModal'
 import ScrollToTop from '@/components/ScrollToTop'
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const modalsRef = useRef<HTMLDivElement>(null)
   const [isIntroModalOpen, setIsIntroModalOpen] = useState(false)
 
   const handleProfileSelect = (profile: 'guide' | 'explorer') => {
@@ -29,43 +29,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const loadContent = async () => {
-      try {
-        const response = await fetch('/index-content.html')
-        let html = await response.text()
-
-        // Keep full HTML content without stripping sections
-        html = html
-
-        if (modalsRef.current) {
-          const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
-          const bodyContent = bodyMatch ? bodyMatch[1] : html
-
-          // Extract only modal elements and inject into visible container
-          const temp = document.createElement('div')
-          temp.innerHTML = bodyContent
-          const wantedIds = ['campus-select', 'profile-select', 'live-chat-learn']
-          const fragments: string[] = []
-          wantedIds.forEach((id) => {
-            const el = temp.querySelector('#' + id)
-            if (el) {
-              fragments.push(el.outerHTML)
-            }
-          })
-          modalsRef.current.innerHTML = fragments.join('\n')
-        }
-
-        // Show modal after content is loaded
-        setTimeout(() => {
-          console.log('Content loaded, opening intro modal...')
-          setIsIntroModalOpen(true)
-        }, 3000) // delay after content loads
-      } catch (error) {
-        console.error('Error loading content:', error)
-      }
-    }
-
-    loadContent()
+    // Show intro modal after page loads
+    setTimeout(() => {
+      console.log('Content loaded, opening intro modal...')
+      setIsIntroModalOpen(true)
+    }, 3000)
   }, [])
 
   return (
@@ -85,36 +53,13 @@ export default function Home() {
       <Footer />
       <ScrollToTop />
       <ProfileSelectModal />
+      <CampusSelectModal />
+      <LiveChatLearnModal />
       <IntroProfileSelectModal 
         isOpen={isIntroModalOpen}
         onClose={() => setIsIntroModalOpen(false)}
         onProfileSelect={handleProfileSelect}
       />
-
-      {/* Legacy modals injected here so data-target="#campus-select" works */}
-      <div ref={modalsRef} />
-
-      {/* Hidden legacy content container */}
-      <div ref={containerRef} style={{ display: 'none' }}>
-        <div style={{ padding: '20px', textAlign: 'center' }}>
-          <h2>Loading Zeochat...</h2>
-          <button 
-            onClick={() => setIsIntroModalOpen(true)}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              marginTop: '20px'
-            }}
-          >
-            Test Modal (Click to Open)
-          </button>
-          <p>Modal Status: {isIntroModalOpen ? 'OPEN' : 'CLOSED'}</p>
-        </div>
-      </div>
     </div>
   )
 }

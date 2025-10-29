@@ -1,11 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function ProfileSelectModal() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isTimeDropdownOpen, setIsTimeDropdownOpen] = useState(false)
   const [duration, setDuration] = useState('15 Minutes')
+  const [profileType, setProfileType] = useState('Guide')
+  const [campusType, setCampusType] = useState('')
+  const [rateDuration, setRateDuration] = useState('Hour')
+  
+  const guideRadioRef = useRef<HTMLInputElement>(null)
+  const explorerRadioRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     // Handle outside clicks to close dropdowns
@@ -45,15 +51,75 @@ export default function ProfileSelectModal() {
                 <div className="row">
                   <div className="col-md-12" id="errorregister"></div>
                   <div className="col-md-12 animate-box">
-                    <label id="firstguide" className="container">
+                    <label 
+                      id="firstguide" 
+                      className="container"
+                      style={{ cursor: 'pointer' }}
+                    >
                       Guide <br /> <span>I am here to provide an experience</span>
-                      <input type="radio" name="registertype2" className="checkbox ambassador" value="Guide" />
+                      <input 
+                        ref={guideRadioRef}
+                        type="radio" 
+                        name="registertype2" 
+                        className="checkbox ambassador" 
+                        value="Guide" 
+                        checked={profileType === 'Guide'}
+                        onClick={(e) => {
+                          if (!e.currentTarget.checked) {
+                            setProfileType('Guide')
+                            e.currentTarget.checked = true
+                          }
+                        }}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setProfileType('Guide')
+                            const profileTypeInput = document.getElementById('profiletype') as HTMLInputElement
+                            if (profileTypeInput) profileTypeInput.value = 'Guide'
+                            setTimeout(() => {
+                              const $ = (window as any).$
+                              if ($) {
+                                $(e.target).trigger('change')
+                              }
+                            }, 10)
+                          }
+                        }}
+                      />
                       <span className="checkmark"></span>
                     </label>
-                    <label id="firstexplore" className="container">
+                    <label 
+                      id="firstexplore" 
+                      className="container"
+                      style={{ cursor: 'pointer' }}
+                    >
                       Explorer<br />
                       <span id="dynamic-explorer-label-text">I am exploring places and experiences</span>
-                      <input type="radio" name="registertype2" className="checkbox explorer" value="Explorer" />
+                      <input 
+                        ref={explorerRadioRef}
+                        type="radio" 
+                        name="registertype2" 
+                        className="checkbox explorer" 
+                        value="Explorer" 
+                        checked={profileType === 'Explorer'}
+                        onClick={(e) => {
+                          if (!e.currentTarget.checked) {
+                            setProfileType('Explorer')
+                            e.currentTarget.checked = true
+                          }
+                        }}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setProfileType('Explorer')
+                            const profileTypeInput = document.getElementById('profiletype') as HTMLInputElement
+                            if (profileTypeInput) profileTypeInput.value = 'Explorer'
+                            setTimeout(() => {
+                              const $ = (window as any).$
+                              if ($) {
+                                $(e.target).trigger('change')
+                              }
+                            }, 10)
+                          }
+                        }}
+                      />
                       <span className="checkmark"></span>
                     </label>
 
@@ -366,7 +432,14 @@ export default function ProfileSelectModal() {
                         <label className="radio_container" style={{ padding: '0', margin: '0' }}>
                           <img src="images/campuses/bard.jpg" style={{ display: 'block', width: '100%', height: '240px', objectFit: 'cover', marginBottom: '9px' }} />
                           <span style={{ marginLeft: '30px' }}>Private</span>
-                          <input className="radio" type="radio" name="radio" value="Private" />
+                          <input 
+                            className="radio" 
+                            type="radio" 
+                            name="radio" 
+                            value="Private" 
+                            checked={campusType === 'Private'}
+                            onChange={(e) => setCampusType(e.target.value)}
+                          />
                           <span className="radio_button" style={{ top: 'auto', bottom: '0px' }}></span>
                         </label>
                       </div>
@@ -374,7 +447,14 @@ export default function ProfileSelectModal() {
                         <label className="radio_container" style={{ padding: '0', margin: '0' }}>
                           <img src="images/campuses/berkeley.jpg" style={{ display: 'block', width: '100%', height: '240px', objectFit: 'cover', marginBottom: '9px' }} />
                           <span style={{ marginLeft: '30px' }}>Public</span>
-                          <input className="radio" type="radio" name="radio" value="Public" />
+                          <input 
+                            className="radio" 
+                            type="radio" 
+                            name="radio" 
+                            value="Public" 
+                            checked={campusType === 'Public'}
+                            onChange={(e) => setCampusType(e.target.value)}
+                          />
                           <span className="radio_button" style={{ top: 'auto', bottom: '0px' }}></span>
                         </label>
                       </div>
@@ -382,7 +462,14 @@ export default function ProfileSelectModal() {
                         <label className="radio_container" style={{ padding: '0', margin: '0' }}>
                           <img src="images/campuses/harvard.png" style={{ display: 'block', width: '100%', height: '240px', objectFit: 'cover', marginBottom: '9px' }} />
                           <span style={{ marginLeft: '30px' }}>Elite</span>
-                          <input className="radio" type="radio" name="radio" value="Elite" />
+                          <input 
+                            className="radio" 
+                            type="radio" 
+                            name="radio" 
+                            value="Elite" 
+                            checked={campusType === 'Elite'}
+                            onChange={(e) => setCampusType(e.target.value)}
+                          />
                           <span className="radio_button" style={{ top: 'auto', bottom: '0px' }}></span>
                         </label>
                       </div>
@@ -414,17 +501,38 @@ export default function ProfileSelectModal() {
                         <div className="rate duration-container dur2" style={{ display: 'block', marginBottom: '6px' }}>
                           <label className="radio_container">
                             Hour
-                            <input className="radio" type="radio" name="Hour2" value="Hour" />
+                            <input 
+                              className="radio" 
+                              type="radio" 
+                              name="Hour2" 
+                              value="Hour" 
+                              checked={rateDuration === 'Hour'}
+                              onChange={(e) => setRateDuration(e.target.value)}
+                            />
                             <span className="radio_button"></span>
                           </label>
                           <label className="radio_container">
                             Half Hour
-                            <input className="radio" type="radio" name="HH2" value="HH" />
+                            <input 
+                              className="radio" 
+                              type="radio" 
+                              name="HH2" 
+                              value="HH" 
+                              checked={rateDuration === 'HH'}
+                              onChange={(e) => setRateDuration(e.target.value)}
+                            />
                             <span className="radio_button"></span>
                           </label>
                           <label className="radio_container">
                             Quarter Hour
-                            <input className="radio" type="radio" name="QH2" value="QH" />
+                            <input 
+                              className="radio" 
+                              type="radio" 
+                              name="QH2" 
+                              value="QH" 
+                              checked={rateDuration === 'QH'}
+                              onChange={(e) => setRateDuration(e.target.value)}
+                            />
                             <span className="radio_button"></span>
                           </label>
                           <select className="duration form-select" style={{ display: 'none' }}>
