@@ -17,15 +17,30 @@ export default function Navbar() {
     // Check if offcanvas is open
     const checkOffcanvas = () => {
       const body = document.body
-      setIsOffcanvasOpen(body.classList.contains('offcanvas') || body.classList.contains('overflow'))
+      const isOpen = body.classList.contains('offcanvas') || body.classList.contains('overflow')
+      
+      // Update state - React will handle portal unmounting automatically
+      setIsOffcanvasOpen(isOpen)
     }
 
-    // Observer for body class changes
-    const observer = new MutationObserver(checkOffcanvas)
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['class']
+    // Observer for body class changes with immediate callback
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          // Use setTimeout to ensure DOM updates are complete
+          setTimeout(checkOffcanvas, 0)
+        }
+      })
     })
+    
+    if (document.body) {
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class'],
+        subtree: false,
+        attributeOldValue: false
+      })
+    }
 
     // Initial check
     checkOffcanvas()
@@ -78,39 +93,43 @@ export default function Navbar() {
 
           <div className="col-md-9 text-right menu-1"></div>
           
-          {!isOffcanvasOpen && (
-            <a 
-              href="javascript:void(0)"
-              onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).goToTopall) {
-                  (window as any).goToTopall()
-                } else {
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }
-              }}
-              className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
-            >
-              <i></i>
-            </a>
-          )}
+          <a 
+            href="javascript:void(0)"
+            className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
+            style={isOffcanvasOpen ? { display: 'none' } : undefined}
+          >
+            <i></i>
+          </a>
           {isOffcanvasOpen && typeof document !== 'undefined' && createPortal(
             <a 
               href="javascript:void(0)"
-              onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).goToTopall) {
-                  (window as any).goToTopall()
-                } else {
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                
+                const body = document.body
+                
+                // Remove classes to close sidebar
+                body.classList.remove('overflow', 'offcanvas')
+                
+                // Remove active from all toggles including navbar one
+                document.querySelectorAll('.js-zeochat-nav-toggle').forEach(el => {
+                  el.classList.remove('active')
+                })
+                
+                // Update state to unmount portal
+                setIsOffcanvasOpen(false)
               }}
-              className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
+              className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white active"
               style={{
                 position: 'fixed',
                 top: '35px',
                 right: '15px',
                 zIndex: 99999,
                 transform: 'translateZ(0)',
-                isolation: 'isolate'
+                isolation: 'isolate',
+                pointerEvents: 'auto',
+                cursor: 'pointer'
               }}
             >
               <i></i>
