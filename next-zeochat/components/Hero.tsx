@@ -20,7 +20,7 @@ const slides: SlideData[] = [
     buttonText: 'Go Live',
     buttonIcon: 'icon-shield2',
     modalTarget: '#campus-select',
-    paddingLeft: '130px'
+
   },
   {
     videoSource: 'videos/fireworks.mp4',
@@ -29,7 +29,7 @@ const slides: SlideData[] = [
     buttonText: 'Qualify as a Guide',
     buttonIcon: 'icon-global',
     modalTarget: '#campus-select',
-    paddingLeft: '130px'
+
   },
   {
     videoSource: 'videos/motorcycle.mp4',
@@ -38,7 +38,7 @@ const slides: SlideData[] = [
     buttonText: 'Start Your Journey',
     buttonIcon: 'icon-library',
     modalTarget: '#chat-topics',
-    paddingLeft: '130px'
+
   },
   {
     videoSource: 'videos/surf.mp4',
@@ -47,7 +47,7 @@ const slides: SlideData[] = [
     buttonText: 'Start Connecting',
     buttonIcon: 'icon-bubble',
     modalTarget: '#live-chat-learn',
-    paddingLeft: '130px'
+
   },
   {
     videoSource: 'videos/drone.mp4',
@@ -56,7 +56,7 @@ const slides: SlideData[] = [
     buttonText: "Let's Go",
     buttonIcon: 'icon-rocket',
     modalTarget: '#profile-select',
-    paddingLeft: '130px'
+
   },
   {
     videoSource: 'videos/buggy.mp4',
@@ -65,7 +65,7 @@ const slides: SlideData[] = [
     buttonText: 'Schedule Your Zeochat',
     buttonIcon: 'icon-calendar2',
     modalTarget: '#modal-date-select',
-    paddingLeft: '130px'
+   
   },
   {
     videoSource: 'videos/sealions.mp4',
@@ -74,7 +74,7 @@ const slides: SlideData[] = [
     buttonText: 'Get Started',
     buttonIcon: 'icon-feed intro-feed-icon',
     modalTarget: '#profile-select',
-    paddingLeft: '130px'
+    
   }
 ]
 
@@ -131,6 +131,7 @@ export default function Hero() {
       $(document).on('click', '[data-target="#campus-select"]', handleCampusSelectClick)
       $(document).on('click', '[data-target="#chat-topics"]', handleChatTopicsClick)
       $(document).on('click', '[data-target="#intro-select"]', handleIntroSelectClick)
+      
       return () => {
         $(document).off('click', '[data-target="#campus-select"]', handleCampusSelectClick)
         $(document).off('click', '[data-target="#chat-topics"]', handleChatTopicsClick)
@@ -178,10 +179,15 @@ export default function Hero() {
               </video>
             </div>
             <div className="overlay"></div>
-            <div className="container-fluid">
+            <div className="container">
               <div className="row">
-                <div className="col-md-8 col-sm-12 col-xs-12 slider-text" style={{ paddingLeft: slide.paddingLeft || '45px', textAlign: 'left' }}>
-                  <div className="slider-text-inner">
+                <div 
+                  className="col-md-8 col-sm-12 col-xs-12 slider-text" 
+                  style={{
+                    textAlign: 'left'
+                  }}
+                >
+                  <div className="slider-text-inner" style={{ textAlign: 'left' }}>
                     <div className="desc ambassador-view">
                       <h2>{slide.title}</h2>
                       <h3>{slide.subtitle}</h3>
@@ -203,7 +209,7 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-          </li>
+      </li>
           ))}
         </ul>
       </div>
