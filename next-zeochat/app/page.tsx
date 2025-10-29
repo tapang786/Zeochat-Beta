@@ -87,7 +87,7 @@ export default function Home() {
         onClose={() => setIsIntroModalOpen(false)}
         onProfileSelect={handleProfileSelect}
       />
-      <div ref={containerRef}>
+      <div ref={containerRef} style={{ display: 'none' }}>
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <h2>Loading Zeochat...</h2>
           <button 
