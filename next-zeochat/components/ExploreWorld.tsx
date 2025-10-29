@@ -1,5 +1,113 @@
 'use client'
 
+type Feature = {
+  icon: string
+  text: string
+}
+
+type ExploreExperience = {
+  formId: string
+  title: string
+  displayTitle: string
+  chatSelect: string
+  date: string
+  image: string
+  descriptionTitle: string
+  features: Feature[]
+  price: string
+  liveDate: string
+  time: string
+  guideName: string
+}
+
+const exploreExperiences: ExploreExperience[] = [
+  {
+    formId: 'form_one',
+    title: 'African Safari',
+    displayTitle: 'African Safari',
+    chatSelect: 'Adventures',
+    date: '11/04/2025',
+    image: 'images/intro/lion.jpg',
+    descriptionTitle: 'This Adventure chat includes',
+    features: [
+      { icon: 'icon-users', text: 'A Jeep ride into the African Savannah' },
+      { icon: 'icon-chat', text: 'Big cats, elephants, wildebeest' }
+    ],
+    price: '$247',
+    liveDate: '11/04/2025',
+    time: '11:00am (PST)',
+    guideName: 'The Guide of Africa'
+  },
+  {
+    formId: 'form_two',
+    title: 'Tour of Tokyo',
+    displayTitle: 'Tour of Tokyo',
+    chatSelect: 'Adventures',
+    date: '11/04/2025',
+    image: 'images/intro/tokyo1.jpg',
+    descriptionTitle: 'This Tour chat includes',
+    features: [
+      { icon: 'icon-users', text: 'A walking tour &amp; chat' },
+      { icon: 'icon-chat', text: "Covering Tokyo's popular districts" }
+    ],
+    price: '$68',
+    liveDate: '11/04/2025',
+    time: '1:00pm (PST)',
+    guideName: 'Your Guide in Japan'
+  },
+  {
+    formId: 'form_three',
+    title: 'Skydive',
+    displayTitle: 'Skydiving',
+    chatSelect: 'Adventures',
+    date: '11/04/2025',
+    image: 'images/intro/skydive.jpg',
+    descriptionTitle: 'This Adventure chat includes',
+    features: [
+      { icon: 'icon-users', text: 'Skydiving!' },
+      { icon: 'icon-chat', text: '18,000 ft drop from our airplane' }
+    ],
+    price: '$47',
+    liveDate: '11/04/2025',
+    time: '3:00pm (PST)',
+    guideName: 'The Skydiving Guide'
+  },
+  {
+    formId: 'form_four',
+    title: 'Kiteboarding',
+    displayTitle: 'Kiteboarding',
+    chatSelect: 'Adventures',
+    date: '11/05/2025',
+    image: 'images/intro/kiteboarding.jpg',
+    descriptionTitle: 'This Adventure chat includes',
+    features: [
+      { icon: 'icon-users', text: 'Ride the wind &amp; waves with me' },
+      { icon: 'icon-chat', text: 'Live from Turks & Caicos' }
+    ],
+    price: '$53',
+    liveDate: '11/05/2025',
+    time: '10:00am (PST)',
+    guideName: 'Your Kitesurfing Guide'
+  },
+  {
+    formId: 'form_five',
+    title: 'Wildflower Collecting',
+    displayTitle: 'Wildflower Collecting',
+    chatSelect: 'Adventures',
+    date: '11/04/2025',
+    image: 'images/intro/wildflowers.jpg',
+    descriptionTitle: 'This Adventure chat includes',
+    features: [
+      { icon: 'icon-users', text: "Let's collect wildflowers" },
+      { icon: 'icon-chat', text: "I'll ship your favorites to you!" }
+    ],
+    price: '$46',
+    liveDate: '11/04/2025',
+    time: '3:00pm (PST)',
+    guideName: 'A Wildflower Guide'
+  }
+]
+
 export default function ExploreWorld() {
   return (
     <div className="zeochat-classes">
@@ -15,30 +123,31 @@ export default function ExploreWorld() {
         <div className="row" id="c1">
           <div className="col-md-12 animate-box">
             <div className="owl-carousel">
-              <div className="item">
+              {exploreExperiences.map((experience, index) => (
+                <div key={index} className="item">
                 <div className="classes">
-                  <form id="form_one" className="zeochat-form" data-value="African Safari">
-                    <input type="hidden" name="campus" value="African Safari" />
-                    <input type="hidden" name="chat-select" value="Adventures" />
-                    <input type="hidden" name="date" value="11/04/2025" />
+                    <form id={experience.formId} className="zeochat-form" data-value={experience.title}>
+                      <input type="hidden" name="campus" value={experience.title} />
+                      <input type="hidden" name="chat-select" value={experience.chatSelect} />
+                      <input type="hidden" name="date" value={experience.date} />
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                      <div className="classes-img" style={{ backgroundImage: 'url(images/intro/lion.jpg)' }}></div>
+                        <div className="classes-img" style={{ backgroundImage: `url(${experience.image})` }}></div>
                     </a>
                     <div className="wrap">
                       <div className="desc">
                         <h2 className="campus">
                           <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                            African Safari
+                              {experience.displayTitle}
                           </a>
                         </h2>
-                        <h4>This Adventure chat includes</h4>
-                        <ul>
-                          <li>
-                            <span className="icon-users"></span>A Jeep ride into the African Savannah
+                          <h4>{experience.descriptionTitle}</h4>
+                          <ul>
+                            {experience.features.map((feature, idx) => (
+                              <li key={idx}>
+                                <span className={feature.icon}></span>
+                                <span dangerouslySetInnerHTML={{ __html: feature.text }} />
                           </li>
-                          <li>
-                            <span className="icon-chat"></span>Big cats, elephants, wildebeest
-                          </li>
+                            ))}
                         </ul>
                       </div>
                       <div className="pricing">
@@ -46,18 +155,18 @@ export default function ExploreWorld() {
                           <li className="price">
                             <span>
                               <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                                $247
+                                  {experience.price}
                               </a>
                             </span>
                           </li>
                           <li>
-                            <span className="loader__dot">LIVE</span> on 11/04/2025 &nbsp;{' '}
+                              <span className="loader__dot">LIVE</span> on {experience.liveDate} &nbsp;{' '}
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
                               <span className="icon-calendar"></span>
                             </a>
                           </li>
                           <li>
-                            11:00am (PST) &rarr;{' '}
+                              {experience.time} &rarr;{' '}
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
                               Join Waitlist
                             </a>
@@ -65,7 +174,7 @@ export default function ExploreWorld() {
                           <li>
                             by{' '}
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-user2"></span> The Guide of Africa
+                                <span className="icon-user2"></span> {experience.guideName}
                             </a>
                             <span className="more">
                               <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
@@ -79,242 +188,7 @@ export default function ExploreWorld() {
                   </form>
                 </div>
               </div>
-
-              <div className="item">
-                <div className="classes">
-                  <form id="form_two" className="zeochat-form" data-value="Tour of Tokyo">
-                    <input type="hidden" name="campus" value="Tour of Tokyo" />
-                    <input type="hidden" name="chat-select" value="Adventures" />
-                    <input type="hidden" name="date" value="11/04/2025" />
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                      <div className="classes-img" style={{ backgroundImage: 'url(images/intro/tokyo1.jpg)' }}></div>
-                    </a>
-                    <div className="wrap">
-                      <div className="desc">
-                        <h2 className="campus">
-                          <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Tour of Tokyo</a>
-                        </h2>
-                        <h4>This Tour chat includes</h4>
-                        <ul>
-                          <li>
-                            <span className="icon-users"></span>A walking tour &amp; chat
-                          </li>
-                          <li>
-                            <span className="icon-chat"></span>Covering Tokyo's popular districts
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="pricing">
-                        <ul className="details">
-                          <li className="price">
-                            <span>
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">$68</a>
-                            </span>
-                          </li>
-                          <li>
-                            <span className="loader__dot">LIVE</span> on 11/04/2025 &nbsp;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-calendar"></span>
-                            </a>
-                          </li>
-                          <li>
-                            1:00pm (PST) &rarr;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Join Waitlist</a>
-                          </li>
-                          <li>
-                            by{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-user2"></span> Your Guide in Japan
-                            </a>
-                            <span className="more">
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                                <i className="icon-link"></i>
-                              </a>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              <div className="item">
-                <div className="classes">
-                  <form id="form_three" className="zeochat-form" data-value="Skydive">
-                    <input type="hidden" name="campus" value="Skydive" />
-                    <input type="hidden" name="chat-select" value="Adventures" />
-                    <input type="hidden" name="date" value="11/04/2025" />
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                      <div className="classes-img" style={{ backgroundImage: 'url(images/intro/skydive.jpg)' }}></div>
-                    </a>
-                    <div className="wrap">
-                      <div className="desc">
-                        <h2 className="campus">
-                          <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Skydiving</a>
-                        </h2>
-                        <h4>This Adventure chat includes</h4>
-                        <ul>
-                          <li>
-                            <span className="icon-users"></span>Skydiving!
-                          </li>
-                          <li>
-                            <span className="icon-chat"></span>18,000 ft drop from our airplane
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="pricing">
-                        <ul className="details">
-                          <li className="price">
-                            <span>
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">$47</a>
-                            </span>
-                          </li>
-                          <li>
-                            <span className="loader__dot">LIVE</span> on 11/04/2025 &nbsp;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-calendar"></span>
-                            </a>
-                          </li>
-                          <li>
-                            3:00pm (PST) &rarr;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Join Waitlist</a>
-                          </li>
-                          <li>
-                            by{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-user2"></span> The Skydiving Guide
-                            </a>
-                            <span className="more">
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                                <i className="icon-link"></i>
-                              </a>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              <div className="item">
-                <div className="classes">
-                  <form id="form_four" className="zeochat-form" data-value="Kiteboarding">
-                    <input type="hidden" name="campus" value="Kiteboarding" />
-                    <input type="hidden" name="chat-select" value="Adventures" />
-                    <input type="hidden" name="date" value="11/05/2025" />
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                      <div className="classes-img" style={{ backgroundImage: 'url(images/intro/kiteboarding.jpg)' }}></div>
-                    </a>
-                    <div className="wrap">
-                      <div className="desc">
-                        <h2 className="campus">
-                          <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Kiteboarding</a>
-                        </h2>
-                        <h4>This Adventure chat includes</h4>
-                        <ul>
-                          <li>
-                            <span className="icon-users"></span> Ride the wind &amp; waves with me
-                          </li>
-                          <li>
-                            <span className="icon-chat"></span> Live from Turks & Caicos
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="pricing">
-                        <ul className="details">
-                          <li className="price">
-                            <span>
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">$53</a>
-                            </span>
-                          </li>
-                          <li>
-                            <span className="loader__dot">LIVE</span> on 11/05/2025 &nbsp;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-calendar"></span>
-                            </a>
-                          </li>
-                          <li>
-                            10:00am (PST) &rarr;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Join Waitlist</a>
-                          </li>
-                          <li>
-                            by{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-user2"></span> Your Kitesurfing Guide
-                            </a>
-                            <span className="more">
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                                <i className="icon-link"></i>
-                              </a>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              <div className="item">
-                <div className="classes">
-                  <form id="form_five" className="zeochat-form" data-value="Wildflower Collecting">
-                    <input type="hidden" name="campus" value="Wildflower Collecting" />
-                    <input type="hidden" name="chat-select" value="Adventures" />
-                    <input type="hidden" name="date" value="11/04/2025" />
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                      <div className="classes-img" style={{ backgroundImage: 'url(images/intro/wildflowers.jpg)' }}></div>
-                    </a>
-                    <div className="wrap">
-                      <div className="desc">
-                        <h2 className="campus">
-                          <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Wildflower Collecting</a>
-                        </h2>
-                        <h4>This Adventure chat includes</h4>
-                        <ul>
-                          <li>
-                            <span className="icon-users"></span>Let's collect wildflowers
-                          </li>
-                          <li>
-                            <span className="icon-chat"></span>I'll ship your favorites to you!
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="pricing">
-                        <ul className="details">
-                          <li className="price">
-                            <span>
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">$46</a>
-                            </span>
-                          </li>
-                          <li>
-                            <span className="loader__dot">LIVE</span> on 11/04/2025 &nbsp;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-calendar"></span>
-                            </a>
-                          </li>
-                          <li>
-                            3:00pm (PST) &rarr;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">Join Waitlist</a>
-                          </li>
-                          <li>
-                            by{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                              <span className="icon-user2"></span> A Wildflower Guide
-                            </a>
-                            <span className="more">
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
-                                <i className="icon-link"></i>
-                              </a>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

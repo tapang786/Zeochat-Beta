@@ -133,12 +133,12 @@ export default function Navbar() {
                   <div className="social-login">
                     <div className="btn btn-white social-btn">
                       <a href="#">
-                        <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google" /> Google
+                        <img src="/images/ic_google.png" alt="Google" /> Google
                       </a>
                     </div>
                     <div className="btn btn-white social-btn">
                       <a href="#">
-                        <img src="https://img.icons8.com/color/48/facebook-new.png" alt="Facebook" /> Facebook
+                        <img src="/images/ic_facebook.png" alt="Facebook" /> Facebook
                       </a>
                     </div>
                   </div>
