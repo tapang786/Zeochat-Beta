@@ -46,6 +46,45 @@ export default function SearchNow() {
     return () => clearTimeout(timer)
   }, [])
 
+  // Rotate the role text: "Text", "Voice", "Video" with a simple typing animation
+  useEffect(() => {
+    const words = [' Text...', 'Voice', 'Video']
+    const roleEl = document.getElementById('role')
+    if (!roleEl) return
+
+    let wordIdx = 0
+    let charIdx = 0
+    let deleting = false
+    let tickTimer: number | undefined
+
+    const tick = () => {
+      const current = words[wordIdx]
+      if (!deleting) {
+        charIdx++
+        roleEl.textContent = current.slice(0, charIdx)
+        if (charIdx === current.length) {
+          deleting = true
+          tickTimer = window.setTimeout(tick, 900) // pause when fully typed
+          return
+        }
+      } else {
+        charIdx--
+        roleEl.textContent = current.slice(0, charIdx)
+        if (charIdx === 0) {
+          deleting = false
+          wordIdx = (wordIdx + 1) % words.length
+        }
+      }
+      tickTimer = window.setTimeout(tick, deleting ? 60 : 90)
+    }
+
+    tickTimer = window.setTimeout(tick, 400)
+
+    return () => {
+      if (tickTimer) window.clearTimeout(tickTimer)
+    }
+  }, [])
+
   return (
     <div id="search-now" className="zeochat-search">
       <div className="container">

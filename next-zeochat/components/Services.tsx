@@ -1,6 +1,70 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
+
 export default function Services() {
+  const [selectedHeadings, setSelectedHeadings] = useState<string[]>(['General Topics'])
+  const [currentIdx, setCurrentIdx] = useState<number>(0)
+  const [fadeIn, setFadeIn] = useState<boolean>(true)
+  const pathRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const updateHeadings = () => {
+      const checked = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="interestcategory"]:checked'))
+      const names = checked
+        .map(el => el.closest('.services')?.querySelector<HTMLHeadingElement>('.desc h3')?.textContent || '')
+        .filter(Boolean)
+      setSelectedHeadings(names.length > 0 ? names : ['General Topics'])
+      setCurrentIdx(0)
+    }
+
+    const boxes = document.querySelectorAll('input[name="interestcategory"]')
+    boxes.forEach(b => b.addEventListener('change', updateHeadings))
+    updateHeadings()
+    return () => boxes.forEach(b => b.removeEventListener('change', updateHeadings))
+  }, [])
+
+  useEffect(() => {
+    if (selectedHeadings.length <= 1) return
+    let fadeTimeout: number | undefined
+    let rotateInterval: number | undefined
+
+    const scheduleNext = () => {
+      setFadeIn(false)
+      fadeTimeout = window.setTimeout(() => {
+        setCurrentIdx(prev => (prev + 1) % selectedHeadings.length)
+        setFadeIn(true)
+      }, 200)
+    }
+
+    rotateInterval = window.setInterval(scheduleNext, 1800)
+    return () => {
+      if (fadeTimeout) window.clearTimeout(fadeTimeout)
+      if (rotateInterval) window.clearInterval(rotateInterval)
+    }
+  }, [selectedHeadings])
+
+  const currentText = selectedHeadings[currentIdx] || 'General Topics'
+
+  // Fit text inside fixed width without changing line width
+  useEffect(() => {
+    const el = pathRef.current
+    if (!el) return
+    // reset to default font-size from computed styles
+    el.style.fontSize = ''
+    const container = el.parentElement as HTMLElement | null
+    if (!container) return
+    const maxWidth = container.clientWidth - 4
+    let guard = 0
+    let fontSize = parseFloat(window.getComputedStyle(el).fontSize || '21')
+    // Decrease font-size until it fits or reaches minimum
+    while (el.scrollWidth > maxWidth && fontSize > 14 && guard < 40) {
+      fontSize -= 0.5
+      el.style.fontSize = fontSize + 'px'
+      guard++
+    }
+  }, [currentText])
+
   return (
     <div id="zeochat-services" style={{ paddingTop: '5em' }}>
       <div className="container">
@@ -9,8 +73,8 @@ export default function Services() {
             <h3>
               <span className="icon-bubbles2" style={{ fontSize: '30px', color: '#fff', background: '#F1D128', boxShadow: '1px 1px 1px #000', textShadow: '1px 1px 1px #777', padding: '21px', borderRadius: '50%', marginRight: '12px' }}></span>
               I would like to connect for{' '}
-              <strong className="connect-for" style={{ borderBottom: '2px solid #F1D128', display: 'inline-block', width: '282px', height: '48px', textAlign: 'center' }}>
-                <strong id="paths">General Topics</strong>
+              <strong className="connect-for" style={{ borderBottom: '2px solid #F1D128', display: 'inline-block', width: '282px', height: '48px', textAlign: 'center', whiteSpace: 'nowrap', overflow: 'hidden' }}>
+                <span id="paths" ref={pathRef} style={{ transition: 'opacity 200ms ease', opacity: fadeIn ? 1 : 0, whiteSpace: 'nowrap', display: 'inline-block' }}>{currentText}</span>
               </strong>{' '}
               <strong>Zeochats</strong>
               <strong className="select-below" style={{ fontWeight: 'normal', fontSize: '21px' }}> (select below)</strong>
