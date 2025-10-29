@@ -19,6 +19,7 @@ import IntroProfileSelectModal from '@/components/IntroProfileSelectModal'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const modalsRef = useRef<HTMLDivElement>(null)
   const [isIntroModalOpen, setIsIntroModalOpen] = useState(false)
 
   const handleProfileSelect = (profile: 'guide' | 'explorer') => {
@@ -47,17 +48,37 @@ export default function Home() {
           .replace(/<div id="zeochat-guides">[\s\S]*?<\/div>\s*<\/div>/i, '')
           .replace(/<div id="zeochat-subscribe">[\s\S]*?<\/div>\s*<\/div>/i, '')
           .replace(/<div id="zeochat-footer">[\s\S]*?<\/div>\s*<\/div>/i, '')
-        if (containerRef.current) {
+
+        if (containerRef.current || modalsRef.current) {
           const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
           const bodyContent = bodyMatch ? bodyMatch[1] : html
-          containerRef.current.innerHTML = bodyContent
+
+          // Put all content (hidden) for fallback/reference
+          if (containerRef.current) {
+            containerRef.current.innerHTML = bodyContent
+          }
+
+          // Extract only modal elements and inject into visible container
+          const temp = document.createElement('div')
+          temp.innerHTML = bodyContent
+          const wantedIds = ['campus-select', 'profile-select', 'live-chat-learn']
+          const fragments: string[] = []
+          wantedIds.forEach((id) => {
+            const el = temp.querySelector('#' + id)
+            if (el) {
+              fragments.push(el.outerHTML)
+            }
+          })
+          if (modalsRef.current) {
+            modalsRef.current.innerHTML = fragments.join('\n')
+          }
         }
-        
+
         // Show modal after content is loaded
         setTimeout(() => {
           console.log('Content loaded, opening intro modal...')
           setIsIntroModalOpen(true)
-        }, 3000) // 2 second delay after content loads
+        }, 3000) // delay after content loads
       } catch (error) {
         console.error('Error loading content:', error)
       }
@@ -87,6 +108,11 @@ export default function Home() {
         onClose={() => setIsIntroModalOpen(false)}
         onProfileSelect={handleProfileSelect}
       />
+
+      {/* Legacy modals injected here so data-target="#campus-select" works */}
+      <div ref={modalsRef} />
+
+      {/* Hidden legacy content container */}
       <div ref={containerRef} style={{ display: 'none' }}>
         <div style={{ padding: '20px', textAlign: 'center' }}>
           <h2>Loading Zeochat...</h2>
