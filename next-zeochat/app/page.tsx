@@ -57,7 +57,7 @@ export default function Home() {
         setTimeout(() => {
           console.log('Content loaded, opening intro modal...')
           setIsIntroModalOpen(true)
-        }, 5000) // 2 second delay after content loads
+        }, 3000) // 2 second delay after content loads
       } catch (error) {
         console.error('Error loading content:', error)
       }
