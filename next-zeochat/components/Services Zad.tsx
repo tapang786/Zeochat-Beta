@@ -57,7 +57,7 @@ export default function Services() {
                   <span className="icon">
                     <i className="flaticon-smartphone"></i>
                   </span>
-                  <div className keine="">desc">
+                  <div className="desc">
                     <h3>Shopping</h3>
                   </div>
                 </div>

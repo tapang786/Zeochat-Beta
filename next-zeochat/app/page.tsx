@@ -16,6 +16,7 @@ import Subscribe from '@/components/Subscribe'
 import Footer from '@/components/Footer'
 import ProfileSelectModal from '@/components/ProfileSelectModal'
 import IntroProfileSelectModal from '@/components/IntroProfileSelectModal'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -82,6 +83,7 @@ export default function Home() {
       <Guides />
       <Subscribe />
       <Footer />
+      <ScrollToTop />
       <ProfileSelectModal />
       <IntroProfileSelectModal 
         isOpen={isIntroModalOpen}

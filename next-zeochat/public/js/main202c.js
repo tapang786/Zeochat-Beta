@@ -45,8 +45,8 @@
 
 	var offcanvasMenu = function() {
 
-		$('#page').prepend('<div id="zeochat-offcanvas" />');
-		$('#zeochat-offcanvas').prepend('<div id="zeochat-logo-offcanvas"><a href="index.html"><span>Zeo</span>chat <span class="icon-feed"></span></a></div>');
+	$('#page').prepend('<div id="zeochat-offcanvas" />');
+	$('#zeochat-offcanvas').prepend('<div id="zeochat-logo-offcanvas"><a href="index.html"><span>Zeo</span>chat <span class="icon-feed"></span></a></div>');
 		// Hamburger menu removed - now handled in Navbar component
 		// $('#page').prepend('<a href="javascript:void(0)" onclick="goToTopall()" class="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"><i></i></a>');
 		

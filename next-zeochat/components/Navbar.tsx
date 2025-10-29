@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false)
 
   useEffect(() => {
     // Remove hamburger menu created by JavaScript if it exists
@@ -11,6 +13,22 @@ export default function Navbar() {
     if (existingToggle && existingToggle.parentElement?.id === 'page') {
       existingToggle.remove()
     }
+
+    // Check if offcanvas is open
+    const checkOffcanvas = () => {
+      const body = document.body
+      setIsOffcanvasOpen(body.classList.contains('offcanvas') || body.classList.contains('overflow'))
+    }
+
+    // Observer for body class changes
+    const observer = new MutationObserver(checkOffcanvas)
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+
+    // Initial check
+    checkOffcanvas()
 
     const handleScroll = () => {
       const scroll = window.scrollY || window.pageYOffset
@@ -38,7 +56,10 @@ export default function Navbar() {
     handleScroll()
 
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      observer.disconnect()
+    }
   }, [])
 
   // Navbar content JSX (shared between normal and sticky)
@@ -57,19 +78,45 @@ export default function Navbar() {
 
           <div className="col-md-9 text-right menu-1"></div>
           
-          <a 
-            href="javascript:void(0)"
-            onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).goToTopall) {
-                (window as any).goToTopall()
-              } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }
-            }}
-            className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
-          >
-            <i></i>
-          </a>
+          {!isOffcanvasOpen && (
+            <a 
+              href="javascript:void(0)"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).goToTopall) {
+                  (window as any).goToTopall()
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+              className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
+            >
+              <i></i>
+            </a>
+          )}
+          {isOffcanvasOpen && typeof document !== 'undefined' && createPortal(
+            <a 
+              href="javascript:void(0)"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).goToTopall) {
+                  (window as any).goToTopall()
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+              className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
+              style={{
+                position: 'fixed',
+                top: '35px',
+                right: '15px',
+                zIndex: 99999,
+                transform: 'translateZ(0)',
+                isolation: 'isolate'
+              }}
+            >
+              <i></i>
+            </a>,
+            document.body
+          )}
 
           <div className="menu-2">
             <ul className="item-2 explorer-view info-not-added" style={{ marginBottom: '18px' }}>
