@@ -4,27 +4,56 @@ import { useEffect, useState } from 'react'
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [hasFixedMenu, setHasFixedMenu] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    // Remove hamburger menu created by JavaScript if it exists
+    const existingToggle = document.querySelector('a.js-zeochat-nav-toggle.zeochat-nav-toggle.zeochat-nav-white')
+    if (existingToggle && existingToggle.parentElement?.id === 'page') {
+      existingToggle.remove()
+    }
+
     const handleScroll = () => {
-      // Get hero section height dynamically
+      const scroll = window.scrollY || window.pageYOffset
       const heroSection = document.getElementById('zeochat-hero')
-      const heroHeight = heroSection ? heroSection.offsetHeight : 700 // fallback to min-height
       
-      if (window.scrollY > heroHeight) {
+      let heroBottom = 700 // fallback
+      if (heroSection) {
+        heroBottom = heroSection.offsetTop + heroSection.offsetHeight
+      }
+      
+      // Sticky navbar when hero section ends
+      if (scroll >= heroBottom) {
         setIsScrolled(true)
+        setIsVisible(true)
+        // Add fixed-menu when past hero section
+        setHasFixedMenu(true)
       } else {
         setIsScrolled(false)
+        setIsVisible(true) // Always visible, even at top
+        setHasFixedMenu(false)
       }
     }
+
+    // Initial check
+    handleScroll()
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <nav className={`zeochat-nav guest ${isScrolled ? 'scrolled' : ''}`} role="navigation">
-      <div className="top-menu">
+    <nav 
+      className={`zeochat-nav guest ${isScrolled ? 'scrolled' : ''}`} 
+      role="navigation"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        visibility: isVisible ? 'visible' : 'hidden',
+        transition: 'opacity 0.5s ease-in-out, visibility 0.5s ease-in-out'
+      }}
+    >
+      <div className={`top-menu ${hasFixedMenu ? 'fixed-menu' : ''}`}>
         <div className="container">
           <div className="row">
             <div className="col-md-3">
@@ -37,6 +66,21 @@ export default function Navbar() {
             </div>
 
             <div className="col-md-9 text-right menu-1"></div>
+            
+            {/* Hamburger Menu - inside navbar to scroll with logo */}
+            <a 
+              href="javascript:void(0)"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).goToTopall) {
+                  (window as any).goToTopall()
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }
+              }}
+              className={`js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white ${hasFixedMenu ? 'fixed-hamburger' : ''}`}
+            >
+              <i></i>
+            </a>
 
             <div className="menu-2">
               

@@ -110,9 +110,12 @@ h1, h2, h3, h4, h5, h6, figure, ul {
     background: url(/images/dark.jpg);
     background-size: cover;
     width: 100%;
-    height: fit-content;
-    background-position: center;
-    background-repeat: no-repeat; }
+    height: 75px;
+    background-position: start;
+    background-repeat: no-repeat; 
+    border-bottom: 1px solid #999;
+    opacity: 1;
+  }
   @media screen and (max-width: 768px) {
     .zeochat-nav {
       margin: 0; } }
@@ -219,7 +222,7 @@ h1, h2, h3, h4, h5, h6, figure, ul {
     padding-top: 0;
     visibility:hidden;
     }
-    .zeochat-nav #zeochat-logo a.logo-beta {position: relative; top: 22px; right: 45px; font-size: 18px; color: #fff; opacity: .7;}
+    .zeochat-nav #zeochat-logo a.logo-beta {position: relative; top: 16px; right: 36px; font-size: 15px; color: #fff; opacity: 1;}
     .zeochat-nav .fixed-menu #zeochat-logo a.logo-beta {position: relative;top: 16px; right: 36px; font-size: 15px; opacity: 1;}
     .zeochat-nav #zeochat-logo a.logo-beta:hover {opacity: 1;}
       @media screen and (min-width: 1500px) {

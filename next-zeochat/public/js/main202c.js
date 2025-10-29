@@ -47,7 +47,8 @@
 
 		$('#page').prepend('<div id="zeochat-offcanvas" />');
 		$('#zeochat-offcanvas').prepend('<div id="zeochat-logo-offcanvas"><a href="index.html"><span>Zeo</span>chat <span class="icon-feed"></span></a></div>');
-		$('#page').prepend('<a href="javascript:void(0)" onclick="goToTopall()" class="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"><i></i></a>');
+		// Hamburger menu removed - now handled in Navbar component
+		// $('#page').prepend('<a href="javascript:void(0)" onclick="goToTopall()" class="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"><i></i></a>');
 		
 		// Clone divs with menu classes 1-3 and input in #zeochat-offcanvas.
 		var clone1 = $('.col-md-9.menu-1 > ul').clone();

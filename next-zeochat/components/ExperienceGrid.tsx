@@ -158,102 +158,101 @@ export default function ExperienceGrid() {
         <div className="row">
           {experiences.map((experience, index) => (
             <div key={index} className="col-md-4 animate-box" data-value={experience.title}>
-              <div className="classes campuses">
-                <form action="javascript:void(0);" method="post" className="zeochat-form">
+            <div className="classes campuses">
+              <form action="javascript:void(0);" method="post" className="zeochat-form">
                   <input type="hidden" name="campus" value={experience.title} />
                   <img className="classes-img" src={experience.image} alt={experience.imageAlt} />
-                  <div className="wrap">
-                    <div className="desc" style={{ paddingBottom: '30px' }}>
-                      <h2 className="campus">
+                <div className="wrap">
+                  <div className="desc" style={{ paddingBottom: '30px' }}>
+                    <h2 className="campus">
                         <a href="javascript:void(0);">{experience.title}</a>
-                      </h2>
+                    </h2>
 
-                      <div className="row">
-                        <div className="col-md-12 no-pad">
+                    <div className="row">
+                      <div className="col-md-12 no-pad">
                           <div className={`form-container form-group topic-select ${experience.formFieldClass || ''}`}>
                             <div className={`form-field ${experience.formFieldClass || ''}`}>
-                              <i className="icon icon-bubbles2"></i>
-                              <input name="chat-select" className="form-control dropdown-toggle" defaultValue="Zeochat Select" data-toggle="dropdown" autoComplete="off" readOnly />
-                              <ul className="dropdown-menu checkbox" style={{ width: '100%', padding: '12px', paddingTop: '9px' }}>
-                                <li className="dropdown-header">
-                                  I'd like to chat about{' '}
-                                  <a className="infolink disableDefault" title="Learn More" data-toggle="modal" data-target="#chat-topics">
-                                    ?
-                                  </a>
-                                </li>
-                                <li className="divider"></li>
-                                <li>
-                                  <label>
-                                    <input className="radio checkbox-item item-two" name="time" type="radio" value="15 Minutes" defaultChecked />
-                                    15 Minutes
-                                  </label>
-                                </li>
-                                <li>
-                                  <label>
-                                    <input className="checkbox checkbox-item item-three" name="time" type="radio" value="30 Minutes" />
-                                    30 Minutes
-                                  </label>
-                                </li>
-                                <li>
-                                  <label>
-                                    <input className="checkbox checkbox-item item-four" name="time" type="radio" value="45 Minutes" />
-                                    45 Minutes
-                                  </label>
-                                </li>
-                                <li>
-                                  <label>
-                                    <input className="checkbox checkbox-item item-five" name="time" type="radio" value="60 Minutes" />
-                                    60 Minutes
-                                  </label>
-                                </li>
-                                <li>
-                                  <button
-                                    type="button"
-                                    className="add-topics btn btn-sm btn-success"
-                                    onClick={() => {
-                                      const open = document.querySelector('.form-field.open')
-                                      if (open && open.classList) open.classList.remove('open')
-                                    }}
-                                  >
-                                    Add
-                                  </button>
-                                </li>
-                              </ul>
-                            </div>
+                            <i className="icon icon-bubbles2"></i>
+                            <input name="chat-select" className="form-control dropdown-toggle" defaultValue="Zeochat Select" data-toggle="dropdown" autoComplete="off" readOnly />
+                            <ul className="dropdown-menu checkbox" style={{ width: '100%', padding: '12px', paddingTop: '9px' }}>
+                              <li className="dropdown-header">
+                                I'd like to chat about{' '}
+                                <a className="infolink disableDefault" title="Learn More" data-toggle="modal" data-target="#chat-topics">
+                                  ?
+                                </a>
+                              </li>
+                              <li className="divider"></li>
+                              <li>
+                                <label>
+                                  <input className="radio checkbox-item item-two" name="time" type="radio" value="15 Minutes" defaultChecked />
+                                  15 Minutes
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input className="checkbox checkbox-item item-three" name="time" type="radio" value="30 Minutes" />
+                                  30 Minutes
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input className="checkbox checkbox-item item-four" name="time" type="radio" value="45 Minutes" />
+                                  45 Minutes
+                                </label>
+                              </li>
+                              <li>
+                                <label>
+                                  <input className="checkbox checkbox-item item-five" name="time" type="radio" value="60 Minutes" />
+                                  60 Minutes
+                                </label>
+                              </li>
+                              <li>
+                                <button
+                                  type="button"
+                                  className="add-topics btn btn-sm btn-success"
+                                  onClick={() => {
+                                    const open = document.querySelector('.form-field.open')
+                                    if (open && open.classList) open.classList.remove('open')
+                                  }}
+                                >
+                                  Add
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                         </div>
                       </div>
+                    </div>
 
-                      <div className="row">
-                        <div className="col-md-12 no-pad" style={{ paddingTop: '3px' }}>
-                          <div className="form-container form-group">
-                            <div className="form-field dropdown">
-                              <div className="dropdown">
-                                <i className="icon icon-calendar"></i>
-                                <input
+                    <div className="row">
+                      <div className="col-md-12 no-pad" style={{ paddingTop: '3px' }}>
+                        <div className="form-container form-group">
+                          <div className="form-field dropdown">
+                            <div className="dropdown">
+                              <i className="icon icon-calendar"></i>
+                              <input
                                   id={experience.dropdownId}
-                                  type="text"
-                                  name="date"
-                                  defaultValue="Date Select"
-                                  className="form-control dropdown-toggle"
-                                  data-toggle="dropdown"
-                                  aria-haspopup="true"
-                                  aria-expanded="false"
-                                  readOnly
-                                />
+                                type="text"
+                                name="date"
+                                defaultValue="Date Select"
+                                className="form-control dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                readOnly
+                              />
                                 <div className="dropdown-menu" aria-labelledby={experience.dropdownId} onClick={(e) => e.stopPropagation()}>
-                                  <div className="datepicker">
-                                    <button
-                                      type="button"
-                                      className="add-date btn btn-sm btn-success"
-                                      onClick={() => {
-                                        const open = document.querySelector('.dropdown.open')
-                                        if (open && open.classList) open.classList.remove('open')
-                                      }}
-                                    >
-                                      Add Date
-                                    </button>
-                                  </div>
+                                <div className="datepicker">
+                                  <button
+                                    type="button"
+                                    className="add-date btn btn-sm btn-success"
+                                    onClick={() => {
+                                      const open = document.querySelector('.dropdown.open')
+                                      if (open && open.classList) open.classList.remove('open')
+                                    }}
+                                  >
+                                    Add Date
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -261,33 +260,34 @@ export default function ExperienceGrid() {
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="chat-cta pricing">
-                      <div className="row">
-                        <div className="col-md-10">
-                          <ul>
-                            <li>
+                  <div className="chat-cta pricing">
+                    <div className="row">
+                      <div className="col-md-10">
+                        <ul>
+                          <li>
                               {experience.priceLabel}{' '}
-                              <a href="javascript:void(0);">
+                            <a href="javascript:void(0);">
                                 <span className="price">{experience.price}</span>
-                              </a>
-                            </li>
-                            <li className="location">
+                            </a>
+                          </li>
+                          <li className="location">
                               Live from <a href="javascript:void(0);">{experience.location}</a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-2">
-                          <button type="submit" name="submit" data-toggle="modal" data-target="#profile-select">
-                            Chat
-                          </button>
-                        </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="col-md-2">
+                        <button type="submit" name="submit" data-toggle="modal" data-target="#profile-select">
+                          Chat
+                        </button>
                       </div>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
+          </div>
           ))}
         </div>
       </div>
