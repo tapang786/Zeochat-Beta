@@ -33,30 +33,12 @@ export default function Home() {
         const response = await fetch('/index-content.html')
         let html = await response.text()
 
-        // Strip hero, search, and user type select sections to avoid duplication
+        // Keep full HTML content without stripping sections
         html = html
-          .replace(/<aside id="zeochat-hero">[\s\S]*?<\/aside>/i, '')
-          .replace(/<div id="search-now"[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="user-type-select">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="services">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="explore-world">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-counter">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-testimony">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-campuses">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-event">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-trainers">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-guides">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-subscribe">[\s\S]*?<\/div>\s*<\/div>/i, '')
-          .replace(/<div id="zeochat-footer">[\s\S]*?<\/div>\s*<\/div>/i, '')
 
-        if (containerRef.current || modalsRef.current) {
+        if (modalsRef.current) {
           const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i)
           const bodyContent = bodyMatch ? bodyMatch[1] : html
-
-          // Put all content (hidden) for fallback/reference
-          if (containerRef.current) {
-            containerRef.current.innerHTML = bodyContent
-          }
 
           // Extract only modal elements and inject into visible container
           const temp = document.createElement('div')
@@ -69,9 +51,7 @@ export default function Home() {
               fragments.push(el.outerHTML)
             }
           })
-          if (modalsRef.current) {
-            modalsRef.current.innerHTML = fragments.join('\n')
-          }
+          modalsRef.current.innerHTML = fragments.join('\n')
         }
 
         // Show modal after content is loaded
