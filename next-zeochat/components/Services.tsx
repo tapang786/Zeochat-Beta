@@ -86,8 +86,25 @@ export default function Services() {
           <div className="col-md-12 services-wrap">
             <div className="row">
               <div className="col-md-3 col-sm-6 text-center animate-box">
-                <div className="services spotlight admissions-advice">
-                  <input type="checkbox" className="checkbox" value="Tour" id="take_Tour" name="interestcategory" />
+                <div
+                  className="services spotlight admissions-advice"
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    const input = e.currentTarget.querySelector('input[type="checkbox"]') as HTMLInputElement | null
+                    if (input) {
+                      input.checked = !input.checked
+                      input.dispatchEvent(new Event('change', { bubbles: true }))
+                    }
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    value="Tour"
+                    id="take_Tour"
+                    name="interestcategory"
+                    onClick={(e) => e.stopPropagation()}
+                  />
                   <span className="checkmark"></span>
                   <span className="icon">
                     <i className="flaticon-computer-graphic"></i>
@@ -99,8 +116,25 @@ export default function Services() {
               </div>
 
               <div className="col-md-3 col-sm-6 text-center animate-box">
-                <div className="services spotlight course-major-insights">
-                  <input type="checkbox" className="checkbox" value="Adventure" id="take_Adventure" name="interestcategory" />
+                <div
+                  className="services spotlight course-major-insights"
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    const input = e.currentTarget.querySelector('input[type="checkbox"]') as HTMLInputElement | null
+                    if (input) {
+                      input.checked = !input.checked
+                      input.dispatchEvent(new Event('change', { bubbles: true }))
+                    }
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    value="Adventure"
+                    id="take_Adventure"
+                    name="interestcategory"
+                    onClick={(e) => e.stopPropagation()}
+                  />
                   <span className="checkmark"></span>
                   <span className="icon">
                     <i className="flaticon-layers"></i>
@@ -112,8 +146,25 @@ export default function Services() {
               </div>
 
               <div className="col-md-3 col-sm-6 text-center animate-box">
-                <div className="services spotlight campus-tours">
-                  <input type="checkbox" className="checkbox" id="take_Shopping" name="interestcategory" value="Shopping" />
+                <div
+                  className="services spotlight campus-tours"
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    const input = e.currentTarget.querySelector('input[type="checkbox"]') as HTMLInputElement | null
+                    if (input) {
+                      input.checked = !input.checked
+                      input.dispatchEvent(new Event('change', { bubbles: true }))
+                    }
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    id="take_Shopping"
+                    name="interestcategory"
+                    value="Shopping"
+                    onClick={(e) => e.stopPropagation()}
+                  />
                   <span className="checkmark"></span>
                   <span className="icon">
                     <i className="flaticon-smartphone"></i>
@@ -125,8 +176,25 @@ export default function Services() {
               </div>
 
               <div className="col-md-3 col-sm-6 text-center animate-box">
-                <div className="services spotlight student-chats">
-                  <input type="checkbox" className="checkbox" id="take_Concert&Festival" name="interestcategory" value="Concert&Festival" />
+                <div
+                  className="services spotlight student-chats"
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    const input = e.currentTarget.querySelector('input[type="checkbox"]') as HTMLInputElement | null
+                    if (input) {
+                      input.checked = !input.checked
+                      input.dispatchEvent(new Event('change', { bubbles: true }))
+                    }
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    id="take_Concert&Festival"
+                    name="interestcategory"
+                    value="Concert&Festival"
+                    onClick={(e) => e.stopPropagation()}
+                  />
                   <span className="checkmark"></span>
                   <span className="icon">
                     <i className="flaticon-desktop"></i>
