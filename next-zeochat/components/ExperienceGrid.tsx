@@ -159,13 +159,13 @@ export default function ExperienceGrid() {
           {experiences.map((experience, index) => (
             <div key={index} className="col-md-4 animate-box" data-value={experience.title}>
             <div className="classes campuses">
-              <form action="javascript:void(0);" method="post" className="zeochat-form">
+              <form action="#" onSubmit={(e)=>e.preventDefault()} method="post" className="zeochat-form">
                   <input type="hidden" name="campus" value={experience.title} />
                   <img className="classes-img" src={experience.image} alt={experience.imageAlt} />
                 <div className="wrap">
                   <div className="desc" style={{ paddingBottom: '30px' }}>
                     <h2 className="campus">
-                        <a href="javascript:void(0);">{experience.title}</a>
+                        <a href="#" onClick={(e)=>e.preventDefault()}>{experience.title}</a>
                     </h2>
 
                     <div className="row">
@@ -267,13 +267,13 @@ export default function ExperienceGrid() {
                       <div className="col-md-10">
                         <ul>
                           <li>
-                              {experience.priceLabel}{' '}
-                            <a href="javascript:void(0);">
+                            {experience.priceLabel}{' '}
+                            <a href="#" onClick={(e)=>e.preventDefault()}>
                                 <span className="price">{experience.price}</span>
                             </a>
                           </li>
                           <li className="location">
-                              Live from <a href="javascript:void(0);">{experience.location}</a>
+                              Live from <a href="#" onClick={(e)=>e.preventDefault()}>{experience.location}</a>
                           </li>
                         </ul>
                       </div>

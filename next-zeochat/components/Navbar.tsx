@@ -94,7 +94,8 @@ export default function Navbar() {
           <div className="col-md-9 text-right menu-1"></div>
           
           <a 
-            href="javascript:void(0)"
+            href="#"
+            onClick={(e) => e.preventDefault()}
             className="js-zeochat-nav-toggle zeochat-nav-toggle zeochat-nav-white"
             style={isOffcanvasOpen ? { display: 'none' } : undefined}
           >
@@ -102,21 +103,17 @@ export default function Navbar() {
           </a>
           {isOffcanvasOpen && typeof document !== 'undefined' && createPortal(
             <a 
-              href="javascript:void(0)"
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                
+              href="#"
+              onClick={(e) => { 
+                e.preventDefault();
+                e.stopPropagation();
                 const body = document.body
-                
                 // Remove classes to close sidebar
                 body.classList.remove('overflow', 'offcanvas')
-                
                 // Remove active from all toggles including navbar one
                 document.querySelectorAll('.js-zeochat-nav-toggle').forEach(el => {
                   el.classList.remove('active')
                 })
-                
                 // Update state to unmount portal
                 setIsOffcanvasOpen(false)
               }}
@@ -246,10 +243,10 @@ export default function Navbar() {
           <div className="menu-4">
             <footer>
               <ul className="item-4">
-                <li><a href="javascript:void(0);">About Us</a></li>
-                <li><a href="javascript:void(0);">Contact</a></li>
-                <li><a href="javascript:void(0);">Press</a></li>
-                <li><a href="javascript:void(0);">Our Mission</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>About Us</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>Contact</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>Press</a></li>
+                <li><a href="#" onClick={(e) => e.preventDefault()}>Our Mission</a></li>
               </ul>
             </footer>
           </div>

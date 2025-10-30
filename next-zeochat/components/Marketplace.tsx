@@ -266,14 +266,14 @@ export default function Marketplace() {
               <div className="col-md-12">
                 {/* Buzz Entry 1 */}
                 <div className="block-21 d-flex animate-box">
-                  <a href="javascript:void(0);" className="blog-img" style={{ backgroundImage: 'url(images/intro/balloons.jpg)' }}></a>
+                  <a href="#" onClick={(e)=>e.preventDefault()} className="blog-img" style={{ backgroundImage: 'url(images/intro/balloons.jpg)' }}></a>
                   <div className="text">
                     <h3 className="heading" style={{ marginBottom: '3px' }}>
                       Hot Air Balloon Tour!
                     </h3>
                     <h5>
                       Explorer{' '}
-                      <a href="javascript:void(0);">
+                      <a href="#" onClick={(e)=>e.preventDefault()}>
                         <span className="icon-user2"></span> Peter K's
                       </a>{' '}
                       Live Video Chat
@@ -283,7 +283,7 @@ export default function Marketplace() {
                     </p>
                     <div className="meta">
                       <div>
-                        <span className="icon-user2"></span> Guide: <a href="javascript:void(0);">Peter K.</a>
+                        <span className="icon-user2"></span> Guide: <a href="#" onClick={(e)=>e.preventDefault()}>Peter K.</a>
                       </div>
                       <div>
                         <span className="icon-calendar"></span> Chat Date: 10/25/2025
@@ -294,14 +294,14 @@ export default function Marketplace() {
 
                 {/* Buzz Entry 2 */}
                 <div className="block-21 d-flex animate-box">
-                  <a href="javascript:void(0);" className="blog-img" style={{ backgroundImage: 'url(images/intro/st_peters_vatican.jpg)' }}></a>
+                  <a href="#" onClick={(e)=>e.preventDefault()} className="blog-img" style={{ backgroundImage: 'url(images/intro/st_peters_vatican.jpg)' }}></a>
                   <div className="text">
                     <h3 className="heading" style={{ marginBottom: '3px' }}>
                       Light a Prayer Candle
                     </h3>
                     <h5>
                       Explorer{' '}
-                      <a href="javascript:void(0);">
+                      <a href="#" onClick={(e)=>e.preventDefault()}>
                         <span className="icon-user2"></span> Laura B's
                       </a>{' '}
                       Live Video Chat
@@ -311,7 +311,7 @@ export default function Marketplace() {
                     </p>
                     <div className="meta">
                       <div>
-                        <span className="icon-user2"></span> Guide: <a href="javascript:void(0);">Laura B.</a>
+                        <span className="icon-user2"></span> Guide: <a href="#" onClick={(e)=>e.preventDefault()}>Laura B.</a>
                       </div>
                       <div>
                         <span className="icon-calendar"></span> Chat Date: 10/24/2025
@@ -322,14 +322,14 @@ export default function Marketplace() {
 
                 {/* Buzz Entry 3 */}
                 <div className="block-21 d-flex animate-box">
-                  <a href="javascript:void(0);" className="blog-img" style={{ backgroundImage: 'url(images/intro/prague_clock.jpg)' }}></a>
+                  <a href="#" onClick={(e)=>e.preventDefault()} className="blog-img" style={{ backgroundImage: 'url(images/intro/prague_clock.jpg)' }}></a>
                   <div className="text">
                     <h3 className="heading" style={{ marginBottom: '3px' }}>
                       Tour of Prague
                     </h3>
                     <h5>
                       Explorer{' '}
-                      <a href="javascript:void(0);">
+                      <a href="#" onClick={(e)=>e.preventDefault()}>
                         <span className="icon-user2"></span> Frank R's
                       </a>{' '}
                       Live Voice Chat
@@ -339,7 +339,7 @@ export default function Marketplace() {
                     </p>
                     <div className="meta">
                       <div>
-                        <span className="icon-user2"></span> Guide: <a href="javascript:void(0);">Frank R.</a>
+                        <span className="icon-user2"></span> Guide: <a href="#" onClick={(e)=>e.preventDefault()}>Frank R.</a>
                       </div>
                       <div>
                         <span className="icon-calendar"></span> Chat Date: 10/23/2025
@@ -350,14 +350,14 @@ export default function Marketplace() {
 
                 {/* Buzz Entry 4 */}
                 <div className="block-21 d-flex animate-box">
-                  <a href="javascript:void(0);" className="blog-img" style={{ backgroundImage: 'url(images/intro/bike.jpg)' }}></a>
+                  <a href="#" onClick={(e)=>e.preventDefault()} className="blog-img" style={{ backgroundImage: 'url(images/intro/bike.jpg)' }}></a>
                   <div className="text">
                     <h3 className="heading" style={{ marginBottom: '0px' }}>
                       Mountain Biking Adventure
                     </h3>
                     <h5>
                       Explorer{' '}
-                      <a href="javascript:void(0);">
+                      <a href="#" onClick={(e)=>e.preventDefault()}>
                         <span className="icon-user2"></span> Zoe R's
                       </a>{' '}
                       Live Video Chat
@@ -367,7 +367,7 @@ export default function Marketplace() {
                     </p>
                     <div className="meta">
                       <div>
-                        <span className="icon-user2"></span> Guide: <a href="javascript:void(0);">Zoe R.</a>
+                        <span className="icon-user2"></span> Guide: <a href="#" onClick={(e)=>e.preventDefault()}>Zoe R.</a>
                       </div>
                       <div>
                         <span className="icon-calendar"></span> Chat Date: 10/23/2025

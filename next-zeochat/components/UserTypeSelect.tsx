@@ -22,7 +22,7 @@ export default function UserTypeSelect() {
 
             <h3 style={{ lineHeight: '75px', marginTop: '12px', marginBottom: '111px' }}>
               We're invite-only. Apply for your{' '}
-              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                 <strong id="typed" style={{ color: '#F1D128', textShadow: '1px 1px 0px #000', textDecoration: 'underline' }}>
                   EXCLUSIVE BETA
                 </strong>

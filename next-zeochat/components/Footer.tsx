@@ -7,18 +7,18 @@ export default function Footer() {
         <div className="row row-pb-md animate-box">
           <div className="col-md-3 zeochat-widget">
             <h4>
-              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                 Connect
               </a>
             </h4>
             <ul className="zeochat-footer-links">
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   <i className="icon-envelope"></i> Contact Us
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   <i className="icon-location4"></i> Made in Santa Cruz, CA
                 </a>
               </li>
@@ -46,33 +46,33 @@ export default function Footer() {
 
           <div className="col-md-2 zeochat-widget">
             <h4>
-              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                 Our Brand
               </a>
             </h4>
             <ul className="zeochat-footer-links">
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Our Network
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Partnerships
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Press
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Support
                 </a>
               </li>
@@ -81,13 +81,13 @@ export default function Footer() {
 
           <div className="col-md-2 zeochat-widget">
             <h4>
-              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                 Resources
               </a>
             </h4>
             <ul className="zeochat-footer-links">
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   How Zeochat Works
                 </a>
               </li>
@@ -95,22 +95,22 @@ export default function Footer() {
                 <a href="Zeochat/resources/chat-advice/index.html">Chat Advice</a>
               </li>
               <li className="ambassador-view">
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Getting Paid
                 </a>
               </li>
               <li className="explorer-view">
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Payments
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Scholarships
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Blog
                 </a>
               </li>
@@ -119,33 +119,33 @@ export default function Footer() {
 
           <div className="col-md-2 zeochat-widget">
             <h4>
-              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                 Integrity
               </a>
             </h4>
             <ul className="zeochat-footer-links">
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Network Safety
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Our Mission
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Your Privacy
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Giving Back
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                   Honesty
                 </a>
               </li>
@@ -169,7 +169,7 @@ export default function Footer() {
               ></a>
               <div className="desc">
                 <h2>
-                  <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                  <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                     Moto Tour | Rome, Italy
                   </a>
                 </h2>

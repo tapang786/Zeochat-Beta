@@ -28,13 +28,13 @@ export default function CampusSelectModal() {
                       {/* Tour of Rome */}
                       <div className="col-md-4 animate-box" data-value="Tour of Rome" data-dismiss="modal">
                         <div className="classes campuses">
-                          <a href="javascript:void(0);">
+                          <a href="#" onClick={(e)=>e.preventDefault()}>
                             <div className="classes-img" style={{ backgroundImage: 'url(images/intro/trevi.jpg)' }}></div>
                           </a>
                           <div className="wrap">
                             <div className="desc">
                               <h2 className="campus">
-                                <a href="javascript:void(0);">Tour of Rome</a>
+                                <a href="#" onClick={(e)=>e.preventDefault()}>Tour of Rome</a>
                               </h2>
                             </div>
                             <div className="pricing">
@@ -43,9 +43,9 @@ export default function CampusSelectModal() {
                                   Tours start @ <span className="price">$118</span>
                                 </li>
                                 <li className="location">
-                                  Live from <a href="javascript:void(0);">Rome, Italy</a>{' '}
+                                  Live from <a href="#" onClick={(e)=>e.preventDefault()}>Rome, Italy</a>{' '}
                                   <span className="more">
-                                    <a href="javascript:void(0);">
+                                    <a href="#" onClick={(e)=>e.preventDefault()}>
                                       <i className="icon-link"></i>
                                     </a>
                                   </span>
@@ -59,13 +59,13 @@ export default function CampusSelectModal() {
                       {/* Shopping in NYC */}
                       <div className="col-md-4 animate-box" data-value="Shopping in NYC" data-dismiss="modal">
                         <div className="classes campuses">
-                          <a href="javascript:void(0);">
+                          <a href="#" onClick={(e)=>e.preventDefault()}>
                             <div className="classes-img" style={{ backgroundImage: 'url(images/intro/nyc1.jpg)' }}></div>
                           </a>
                           <div className="wrap">
                             <div className="desc">
                               <h2 className="campus">
-                                <a href="javascript:void(0);">Shopping in NYC</a>
+                                <a href="#" onClick={(e)=>e.preventDefault()}>Shopping in NYC</a>
                               </h2>
                             </div>
                             <div className="pricing">
@@ -74,9 +74,9 @@ export default function CampusSelectModal() {
                                   Shopping trips start @ <span className="price">$100</span>
                                 </li>
                                 <li className="location">
-                                  Live from <a href="javascript:void(0);">New York City, New York</a>{' '}
+                                  Live from <a href="#" onClick={(e)=>e.preventDefault()}>New York City, New York</a>{' '}
                                   <span className="more">
-                                    <a href="javascript:void(0);">
+                                    <a href="#" onClick={(e)=>e.preventDefault()}>
                                       <i className="icon-link"></i>
                                     </a>
                                   </span>
@@ -90,13 +90,13 @@ export default function CampusSelectModal() {
                       {/* Grand Canyon Drone Tour */}
                       <div className="col-md-4 animate-box" data-value="Grand Canyon Drone Tour" data-dismiss="modal">
                         <div className="classes campuses">
-                          <a href="javascript:void(0);">
+                          <a href="#" onClick={(e)=>e.preventDefault()}>
                             <div className="classes-img" style={{ backgroundImage: 'url(images/intro/grand_canyon.jpg)' }}></div>
                           </a>
                           <div className="wrap">
                             <div className="desc">
                               <h2 className="campus">
-                                <a href="javascript:void(0);">Grand Canyon Drone Tour</a>
+                                <a href="#" onClick={(e)=>e.preventDefault()}>Grand Canyon Drone Tour</a>
                               </h2>
                             </div>
                             <div className="pricing">
@@ -105,9 +105,9 @@ export default function CampusSelectModal() {
                                   Tours start @ <span className="price">$123</span>
                                 </li>
                                 <li className="location">
-                                  Live from <a href="javascript:void(0);">Grand Canyon National Park</a>{' '}
+                                  Live from <a href="#" onClick={(e)=>e.preventDefault()}>Grand Canyon National Park</a>{' '}
                                   <span className="more">
-                                    <a href="javascript:void(0);">
+                                    <a href="#" onClick={(e)=>e.preventDefault()}>
                                       <i className="icon-link"></i>
                                     </a>
                                   </span>
@@ -121,13 +121,13 @@ export default function CampusSelectModal() {
                       {/* Tour of Bali */}
                       <div className="col-md-4 animate-box" data-value="Tour of Bali" data-dismiss="modal">
                         <div className="classes campuses">
-                          <a href="javascript:void(0);">
+                          <a href="#" onClick={(e)=>e.preventDefault()}>
                             <div className="classes-img" style={{ backgroundImage: 'url(images/intro/bali.jpg)' }}></div>
                           </a>
                           <div className="wrap">
                             <div className="desc">
                               <h2 className="campus">
-                                <a href="javascript:void(0);">Tour of Bali</a>
+                                <a href="#" onClick={(e)=>e.preventDefault()}>Tour of Bali</a>
                               </h2>
                             </div>
                             <div className="pricing">
@@ -136,9 +136,9 @@ export default function CampusSelectModal() {
                                   Tours start @ <span className="price">$112</span>
                                 </li>
                                 <li className="location">
-                                  Live from <a href="javascript:void(0);">Bali, Indonesia</a>{' '}
+                                  Live from <a href="#" onClick={(e)=>e.preventDefault()}>Bali, Indonesia</a>{' '}
                                   <span className="more">
-                                    <a href="javascript:void(0);">
+                                    <a href="#" onClick={(e)=>e.preventDefault()}>
                                       <i className="icon-link"></i>
                                     </a>
                                   </span>
@@ -152,13 +152,13 @@ export default function CampusSelectModal() {
                       {/* Lamborghini Ride in Vegas */}
                       <div className="col-md-4 animate-box" data-value="Lamborghini Ride in Vegas" data-dismiss="modal">
                         <div className="classes campuses">
-                          <a href="javascript:void(0);">
+                          <a href="#" onClick={(e)=>e.preventDefault()}>
                             <div className="classes-img" style={{ backgroundImage: 'url(images/intro/lambo.jpg)' }}></div>
                           </a>
                           <div className="wrap">
                             <div className="desc">
                               <h2 className="campus">
-                                <a href="javascript:void(0);">Lamborghini Ride in Vegas</a>
+                                <a href="#" onClick={(e)=>e.preventDefault()}>Lamborghini Ride in Vegas</a>
                               </h2>
                             </div>
                             <div className="pricing">
@@ -167,9 +167,9 @@ export default function CampusSelectModal() {
                                   Rides start @ <span className="price">$99</span>
                                 </li>
                                 <li className="location">
-                                  Live from <a href="javascript:void(0);">Las Vegas, Nevada</a>{' '}
+                                  Live from <a href="#" onClick={(e)=>e.preventDefault()}>Las Vegas, Nevada</a>{' '}
                                   <span className="more">
-                                    <a href="javascript:void(0);">
+                                    <a href="#" onClick={(e)=>e.preventDefault()}>
                                       <i className="icon-link"></i>
                                     </a>
                                   </span>
@@ -183,13 +183,13 @@ export default function CampusSelectModal() {
                       {/* Wave Watching */}
                       <div className="col-md-4 animate-box" data-value="Surf Report / Wave Watching" data-dismiss="modal">
                         <div className="classes campuses">
-                          <a href="javascript:void(0);">
+                          <a href="#" onClick={(e)=>e.preventDefault()}>
                             <div className="classes-img" style={{ backgroundImage: 'url(images/intro/surf.jpg)' }}></div>
                           </a>
                           <div className="wrap">
                             <div className="desc">
                               <h2 className="campus">
-                                <a href="javascript:void(0);">Wave Watching</a>
+                                <a href="#" onClick={(e)=>e.preventDefault()}>Wave Watching</a>
                               </h2>
                             </div>
                             <div className="pricing">
@@ -198,9 +198,9 @@ export default function CampusSelectModal() {
                                   Watch start @ <span className="price">$28</span>
                                 </li>
                                 <li className="location">
-                                  Live from <a href="javascript:void(0);">Santa Cruz, CA</a>{' '}
+                                  Live from <a href="#" onClick={(e)=>e.preventDefault()}>Santa Cruz, CA</a>{' '}
                                   <span className="more">
-                                    <a href="javascript:void(0);">
+                                    <a href="#" onClick={(e)=>e.preventDefault()}>
                                       <i className="icon-link"></i>
                                     </a>
                                   </span>

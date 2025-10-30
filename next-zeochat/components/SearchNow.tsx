@@ -91,7 +91,7 @@ export default function SearchNow() {
         <div className="row">
           <div className="col-md-12 search-wrap">
             <div className="search-wrap-2">
-              <form action="javascript:void(0);" method="post" className="zeochat-form" autoComplete="off">
+              <form action="#" onSubmit={(e)=>e.preventDefault()} method="post" className="zeochat-form" autoComplete="off">
                 <div className="row">
                   <div className="col-md-3">
                     <div className="form-group">

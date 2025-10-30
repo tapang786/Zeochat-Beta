@@ -193,7 +193,8 @@ export default function Hero() {
                       <h3>{slide.subtitle}</h3>
                       <p className="amb-qualify">
                         <a
-                          href="javascript:void(0);"
+                          href="#"
+                          onClick={(e)=>e.preventDefault()}
                           className="btn btn-primary btn-lg popup-vimeo"
                           data-toggle="modal"
                           data-target={slide.modalTarget}

@@ -130,13 +130,13 @@ export default function ExploreWorld() {
                       <input type="hidden" name="campus" value={experience.title} />
                       <input type="hidden" name="chat-select" value={experience.chatSelect} />
                       <input type="hidden" name="date" value={experience.date} />
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                    <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                         <div className="classes-img" style={{ backgroundImage: `url(${experience.image})` }}></div>
                     </a>
                     <div className="wrap">
                       <div className="desc">
                         <h2 className="campus">
-                          <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                          <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                               {experience.displayTitle}
                           </a>
                         </h2>
@@ -154,30 +154,30 @@ export default function ExploreWorld() {
                         <ul className="details">
                           <li className="price">
                             <span>
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                                   {experience.price}
                               </a>
                             </span>
                           </li>
                           <li>
                               <span className="loader__dot">LIVE</span> on {experience.liveDate} &nbsp;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                            <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                               <span className="icon-calendar"></span>
                             </a>
                           </li>
                           <li>
                               {experience.time} &rarr;{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                            <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                               Join Waitlist
                             </a>
                           </li>
                           <li>
                             by{' '}
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                            <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                                 <span className="icon-user2"></span> {experience.guideName}
                             </a>
                             <span className="more">
-                              <a href="javascript:void(0);" data-toggle="modal" data-target="#profile-select">
+                              <a href="#" onClick={(e)=>e.preventDefault()} data-toggle="modal" data-target="#profile-select">
                                 <i className="icon-link"></i>
                               </a>
                             </span>
